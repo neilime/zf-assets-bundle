@@ -14,7 +14,7 @@ This module is "development / production" environment aware.
  - Less & Scss files are compiled when updated or if an "@import" file is updated
 
 🚀 In production :
- - All asset files (Css, Js, medias) are __**minified**__, __**bundled**__ and __**cached**__ only if once. 
+ - All asset files (Css, Js, medias) are __minified__, __bundled__ and __cached__ only if once. 
  - Assets path are encrypted to mask file tree (with the exception of files in the "assets" public directory)
 
 # Helping Project
