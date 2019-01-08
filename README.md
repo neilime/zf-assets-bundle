@@ -48,11 +48,12 @@ Name | Version
 
 Name | Version | What for 
 -----|---------|----
-[leafo/scssphp](https://github.com/leafo/scssphp) | ^0.7.7 | SCSS compiler
+[tubalmartin/cssmin](https://github.com/tubalmartin/cssmin) | ^4.1.1 | PHP port of the YUI CSS compressor
 [neilime/lessphp](https://github.com/neilime/lessphp) | ^0.5 | Lessphp compliant fork
 [oyejorge/less.php](https://github.com/oyejorge/less.php) | ^1.7.0.14 | Less parser
+[leafo/scssphp](https://github.com/leafo/scssphp) | ^0.7.7 | SCSS compiler
 [tedivm/jshrink](https://github.com/tedivm/jshrink) | ^1.3.1 | Javascript Minifier
-[tubalmartin/cssmin](https://github.com/tubalmartin/cssmin) | ^4.1.1 | Javascript Minifier
+[mrclay/jsmin-php](https://github.com/mrclay/jsmin-php) | ^2.4 | Port of Douglas Crockford's jsmin.c
 
 # Pages
 
