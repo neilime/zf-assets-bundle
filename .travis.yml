@@ -38,4 +38,4 @@ script:
 - composer run testCi
 
 after_script:
-- if [[ $EXECUTE_AFTER_SCRIPT == 'true' ]]; then php vendor/bin/coveralls --verbose --config;fi
+- if [[ $EXECUTE_AFTER_SCRIPT == 'true' ]]; then php vendor/bin/php-coveralls --verbose --config;fi
