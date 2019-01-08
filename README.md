@@ -4,6 +4,7 @@
 [![Latest Stable Version](https://poser.pugx.org/neilime/zf-assets-bundle/v/stable.svg)](https://packagist.org/packages/neilime/zf-assets-bundle)
 [![Total Downloads](https://poser.pugx.org/neilime/zf-assets-bundle/downloads.svg)](https://packagist.org/packages/neilime/zf-assets-bundle)
 [![Coverage Status](https://coveralls.io/repos/github/neilime/zf-assets-bundle/badge.svg?branch=master)](https://coveralls.io/github/neilime/zf-assets-bundle?branch=master)
+[![Beerpay](https://beerpay.io/neilime/zf-assets-bundle/badge.svg)](https://beerpay.io/neilime/zf-assets-bundle)
 
 📢 _AssetsBundle_ is a module for Zend Framework 3+ providing assets management (minifier, bundler & cache) like Css, Js, Less and Scss, dedicated to current module, controller and action.
 
