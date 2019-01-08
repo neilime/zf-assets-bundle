@@ -46,7 +46,7 @@ class PngAssetFileFilter extends \AssetsBundle\AssetFile\AssetFileFilter\ImageAs
      * @return string
      * @throws \InvalidArgumentException
      */
-    public function optimizeImage(resource $rImage) : string
+    public function optimizeImage($rImage) : string
     {
         if (is_resource($rImage)) {
             ob_start();

@@ -40,5 +40,5 @@ abstract class AbstractImageAssetFileFilter extends \AssetsBundle\AssetFile\Asse
      * @param resource $rImage
      * @return string
      */
-    abstract protected function optimizeImage(resource $rImage) : string;
+    abstract protected function optimizeImage($rImage) : string;
 }
