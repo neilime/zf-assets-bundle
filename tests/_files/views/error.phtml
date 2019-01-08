@@ -1,0 +1,7 @@
+<?php
+
+echo 'Error view' . PHP_EOL . $this->message;
+
+if (isset($this->exception) && $this->exception instanceof \Exception) {
+    echo PHP_EOL . PHP_EOL . $this->exception;
+}

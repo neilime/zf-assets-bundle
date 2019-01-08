@@ -1,0 +1,78 @@
+{
+    "name": "neilime/zf-assets-bundle",
+    "type": "library",
+    "description": "Zend Framework 3+ module that provides assets bundling / caching",
+    "keywords": [
+        "zend framework",
+        "assets",
+        "bundle",
+        "cache",
+        "minify",
+        "css",
+        "js",
+        "less",
+        "scss"
+    ],
+    "homepage": "http://neilime.github.io/zf-assets-bundle/",
+    "license": "GNU GENERAL PUBLIC LICENSE",
+    "authors": [
+        {
+            "name": "Neilime",
+            "homepage": "https://github.com/neilime",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/neilime/zf2-assets-bundle/issues"
+    },
+    "minimum-stability": "stable",
+    "suggest": {
+        "ext-gd2": "GD library to compress png files",
+        "leafo/scssphp": "SCSS compiler, used by ScssAssetFileFilter",
+        "neilime/lessphp": "Lessphp compliant fork, used by LesscAssetFileFilter",
+        "oyejorge/less.php": "Less parser, used by LessphpAssetFileFilter",
+        "tedivm/jshrink": "Javascript Minifier, used by JShrinkAssetFileFilter",
+        "mrclay/jsmin-php": "Port of Douglas Crockford's jsmin.c, used by JsMinAssetFileFilter",
+        "tubalmartin/cssmin": "PHP port of the YUI CSS compressor, used by CssAssetFileFilter"
+    },
+    "require": {
+        "php": ">=7.1",
+        "zendframework/zend-config": "^3.2",
+        "zendframework/zend-console": "^2.7",
+        "zendframework/zend-eventmanager": "^3.2",
+        "zendframework/zend-http": "^2.8",
+        "zendframework/zend-modulemanager": "^2.8",
+        "zendframework/zend-mvc": "^3.1",
+        "zendframework/zend-mvc-console": "^1.2",
+        "zendframework/zend-servicemanager": "^3.4",
+        "zendframework/zend-view": "^2.11"
+    },
+    "require-dev": {
+        "leafo/scssphp": "^0.7.7",
+        "mrclay/jsmin-php": "^2.4",
+        "neilime/lessphp": "^0.5.0",
+        "oyejorge/less.php": "v1.7.0.14",
+        "php-coveralls/php-coveralls": "^2.1",
+        "phpunit/phpunit": "^7.5",
+        "tedivm/jshrink": "^1.3",
+        "tubalmartin/cssmin": "^4.1",
+        "zendframework/zend-test": "^3.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "AssetsBundle\\": "src/AssetsBundle"
+        },
+        "classmap": [
+            "Module.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "TestSuite\\": "tests/TestSuite"
+        }
+    },
+    "scripts": {
+        "test": "cd tests && phpunit & cd ..",
+        "testCi": "cd tests && phpunit -d max_execution_time=0 --coverage-text --coverage-clover ../build/logs/clover.xml --coverage-html ../build/coverage/ && cd .."
+    }
+}
