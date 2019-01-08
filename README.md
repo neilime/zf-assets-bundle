@@ -19,9 +19,7 @@ This module is "development / production" environment aware.
 
 # Helping Project
 
-❤️ If this project helps you reduce time to develop and/or you want to help the maintainer of this project, you can support him on [![Beerpay](https://beerpay.io/neilime/zf-assets-bundle/badge.svg)](https://beerpay.io/neilime/zf-assets-bundle) \
-\
-Thank you !
+❤️ If this project helps you reduce time to develop and/or you want to help the maintainer of this project, you can support him on [![Beerpay](https://beerpay.io/neilime/zf-assets-bundle/badge.svg)](https://beerpay.io/neilime/zf-assets-bundle) Thank you !
 
 
 # Contributing
