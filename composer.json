@@ -14,7 +14,7 @@
         "scss"
     ],
     "homepage": "http://neilime.github.io/zf-assets-bundle/",
-    "license": "GNU GENERAL PUBLIC LICENSE",
+    "license": "MIT",
     "authors": [
         {
             "name": "Neilime",
