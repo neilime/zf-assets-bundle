@@ -64,5 +64,4 @@ Name | Version | What for
 4. [Custom Js](https://github.com/neilime/zf-assets-bundle/wiki/Custom-Js)
 5. [Console tools](https://github.com/neilime/zf-assets-bundle/wiki/Console-tools)
 6. [FAQ](https://github.com/neilime/zf-assets-bundle/wiki/FAQ)
-7. [PHP Doc](http://neilime.github.io/zf-assets-bundle/phpdoc/)
-8. [Code Coverage](http://neilime.github.io/zf-assets-bundle/coverage/)
+8. [Code Coverage](https://coveralls.io/github/neilime/zf-assets-bundle?branch=master)
