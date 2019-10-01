@@ -1,41 +1,36 @@
-language: php
-
-sudo: false
-
 env:
   global:
   - secure: "cSujC/abhUMuBqgU88qrGg8fZPOfoXd6sCU+uD6HzAzt0JLNgxVwR0EHss8k7Vc4Z7Pp9FxQFq/f6ecjEbK8w5spw5Vmz8a0D2QE5CEb0vR4hElRqCxNmN+azAVIvB1zyomRtCEdYQTDbjx8K35Uarh4mykczr9oCidI0kc7Ae8="
 
+language: php
+
+sudo: false
+
 matrix:
   include:
     - php: '7.1'
-    - php: '7.2'
-    - php: '7.3'
-      env:
-        - EXECUTE_AFTER_SCRIPT=true
+  - php: '7.2'
+  - php: '7.3'
+    env:
+    - EXECUTE_AFTER_SCRIPT=true
 
-addons:
-  apt:
-    packages:
-    - graphviz
-    
 cache:
   directories:
   - "$HOME/.composer/cache"
-  
+
 before_install:
 - mkdir -p ~/.composer
 - composer self-update
-- composer install --prefer-dist --dev
-- pear channel-discover pear.phpdoc.org
-- pear install phpdoc/phpDocumentor
-- phpenv rehash
+- composer install --prefer-dist
+
+before_script:
+- mkdir -p build/{logs,coverage}
 
 before_script:
 - mkdir -p build/{logs,coverage,phpdoc}
 
 script:
-- composer run testCi
+- composer test:ci
 
 after_script:
-- if [[ $EXECUTE_AFTER_SCRIPT == 'true' ]]; then php vendor/bin/php-coveralls --verbose --config;fi
+- if [[ $EXECUTE_AFTER_SCRIPT == 'true' ]]; then bash <(curl -s https://gist.githubusercontent.com/neilime/769d733c52acdecea8d2548fb3aca3ff/raw/travis_ci_php_publish_build.sh);fi
