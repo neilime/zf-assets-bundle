@@ -8,7 +8,7 @@ sudo: false
 
 matrix:
   include:
-    - php: '7.1'
+  - php: '7.1'
   - php: '7.2'
   - php: '7.3'
     env:
@@ -25,9 +25,6 @@ before_install:
 
 before_script:
 - mkdir -p build/{logs,coverage}
-
-before_script:
-- mkdir -p build/{logs,coverage,phpdoc}
 
 script:
 - composer test:ci
