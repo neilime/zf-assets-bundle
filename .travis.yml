@@ -19,12 +19,8 @@ cache:
   - "$HOME/.composer/cache"
 
 before_install:
-- mkdir -p ~/.composer
-- composer self-update
-- composer install --prefer-dist
-
-before_script:
-- mkdir -p build/{logs,coverage}
+- travis_retry composer self-update
+- travis_retry composer update --prefer-dist --no-interaction --prefer-stable --no-suggest
 
 script:
 - composer test:ci
