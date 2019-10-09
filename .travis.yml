@@ -1,9 +1,8 @@
 env:
   global:
-  - secure: "cSujC/abhUMuBqgU88qrGg8fZPOfoXd6sCU+uD6HzAzt0JLNgxVwR0EHss8k7Vc4Z7Pp9FxQFq/f6ecjEbK8w5spw5Vmz8a0D2QE5CEb0vR4hElRqCxNmN+azAVIvB1zyomRtCEdYQTDbjx8K35Uarh4mykczr9oCidI0kc7Ae8="
-
+  - secure: YeE0fD9Ib4maz2AUBjDGKXuZ56+ubU8a121dJIFByEMLhDEd/HOHWsrpUljW/AAg+dyxCEVIjFmQxq9w+RQIhL8wNv2QtN2tMG5VW+4BqUfoumnc1Y07+JMVNJfSmgSNJcM47acs6wmsVUDbO4PLFVWzR/7Cl7xUFgVlD2k/TxKTdLOHyU+gRtSDyFGus2dKxg03u/V2zZOJv3qC1gDV9VvLlLs+Oyf2sxUh4HZZqmFuhOg6F0fEl5+ESICCfGK5/eSlE5LToJrIFpUeIPthcRqLkvyAG6NsPJFVqNWRWEp9vWqtiXmJbLbisC0Xdl+LP2wqRBtqRQn9+BIrPfpmLyTyKh1U5A2MhfNjeu1ifQl0oTuokQG8r6QjAEjaqfuNPcSLPD/nwjSQojuHHVrOTI6G3/Sa21uAVWvgS2gIzPgQaY4icLkJI/PPWuvajYX1/JthEO9u5nLJM3cFyv2cp3DdL+S0GPuI6F8MiW8BBxNAJrvfUGZNMRP4HunJKn3H9LkPYiLIwLcUAqtlojgCv0AeYoNWTh6sm1oX9o6+kTocSK1P3A6xGPGRZ8qNGqNdl1dkY+YNIn1RT3wIAP2GsLOd+L3l7azvORKKNZlPfp5zL9GP6j7pf2sWnXqxJDEWtwyc1TU4d7BVxyu11fviyxdayTrUqmJrcrfh7bfvikc=
+  
 language: php
-
 sudo: false
 
 matrix:
@@ -13,11 +12,11 @@ matrix:
   - php: '7.3'
     env:
     - EXECUTE_AFTER_SCRIPT=true
-
+    
 cache:
   directories:
   - "$HOME/.composer/cache"
-
+  
 before_install:
 - travis_retry composer self-update
 - travis_retry composer update --prefer-dist --no-interaction --prefer-stable --no-suggest
