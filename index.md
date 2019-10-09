@@ -1,37 +1,43 @@
-## Welcome to GitHub Pages
+---
+layout: default
+title: Home
+---
+# AssetsBundle - Zend Framework module
 
-You can use the [editor on GitHub](https://github.com/neilime/zf-assets-bundle/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+[![Build Status](https://travis-ci.org/neilime/zf-assets-bundle.svg?branch=master)](https://travis-ci.org/neilime/zf-assets-bundle)
+[![Coverage Status](https://coveralls.io/repos/github/neilime/zf-assets-bundle/badge.svg)](https://coveralls.io/github/neilime/zf-assets-bundle)
+[![Latest Stable Version](https://poser.pugx.org/neilime/zf-assets-bundle/v/stable)](https://packagist.org/packages/neilime/zf-assets-bundle)
+[![Total Downloads](https://poser.pugx.org/neilime/zf-assets-bundle/downloads)](https://packagist.org/packages/neilime/zf-assets-bundle)
+[![License](https://poser.pugx.org/neilime/zf-assets-bundle/license)](https://packagist.org/packages/neilime/zf-assets-bundle)
+[![Beerpay](https://beerpay.io/neilime/zf-assets-bundle/badge.svg)](https://beerpay.io/neilime/zf-assets-bundle) 
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+📢 __AssetsBundle__ is a module for Zend Framework 3+ providing assets management (minifier, bundler & cache) like Css, Js, Less and Scss, dedicated to current module, controller and action.
 
-### Markdown
+This module is "development / production" environment aware.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+🔧 In development:
+ - Css & Js files are not bundled for easier debugging.
+ - Less & Scss files are compiled when updated or if an "@import" file is updated
 
-```markdown
-Syntax highlighted code block
+🚀 In production:
+ - All asset files (Css, Js, medias) are __minified__, __bundled__ and __cached__ only if once. 
+ - Assets path are encrypted to mask file tree (with the exception of files in the "assets" public directory)
 
-# Header 1
-## Header 2
-### Header 3
+# Helping Project
 
-- Bulleted
-- List
+❤️ If this project helps you reduce time to develop and/or you want to help the maintainer of this project, you can support him on [![Beerpay](https://beerpay.io/neilime/zf-assets-bundle/badge.svg)](https://beerpay.io/neilime/zf-assets-bundle) Thank you!
 
-1. Numbered
-2. List
+# Contributing
 
-**Bold** and _Italic_ and `Code` text
+👍 If you wish to contribute to this project, please read the [CONTRIBUTING.md](CONTRIBUTING.md) file. Note: If you want to contribute don't hesitate, I'll review any PR.
 
-[Link](url) and ![Image](src)
-```
+# Documentation
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/neilime/zf-assets-bundle/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+1. [Installation](https://github.com/neilime/zf-assets-bundle/wiki/Installation)
+2. [Use with Zend Skeleton Application](https://github.com/neilime/zf-assets-bundle/wiki/Use-with-Zend-Skeleton-Application)
+3. [Configuration](https://github.com/neilime/zf-assets-bundle/wiki/Configuration)
+4. [Custom Js](https://github.com/neilime/zf-assets-bundle/wiki/Custom-Js)
+5. [Console tools](https://github.com/neilime/zf-assets-bundle/wiki/Console-tools)
+6. [FAQ](https://github.com/neilime/zf-assets-bundle/wiki/FAQ)
+8. [Code Coverage](https://coveralls.io/github/neilime/zf-assets-bundle)
+9. [PHP Doc](https://neilime.github.io/zf-assets-bundle/phpdoc)
