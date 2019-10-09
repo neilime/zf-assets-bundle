@@ -1,6 +1,0 @@
-function jscustom(){
-	
-}
-function jscustom(){
-	
-}
