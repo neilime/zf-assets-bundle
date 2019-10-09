@@ -1,32 +1,31 @@
 # AssetsBundle - Zend Framework module
 
 [![Build Status](https://travis-ci.org/neilime/zf-assets-bundle.svg?branch=master)](https://travis-ci.org/neilime/zf-assets-bundle)
-[![Latest Stable Version](https://poser.pugx.org/neilime/zf-assets-bundle/v/stable.svg)](https://packagist.org/packages/neilime/zf-assets-bundle)
-[![Total Downloads](https://poser.pugx.org/neilime/zf-assets-bundle/downloads.svg)](https://packagist.org/packages/neilime/zf-assets-bundle)
-[![Coverage Status](https://coveralls.io/repos/github/neilime/zf-assets-bundle/badge.svg?branch=master)](https://coveralls.io/github/neilime/zf-assets-bundle?branch=master)
-[![Beerpay](https://beerpay.io/neilime/zf-assets-bundle/badge.svg)](https://beerpay.io/neilime/zf-assets-bundle)
+[![Coverage Status](https://coveralls.io/repos/github/neilime/zf-assets-bundle/badge.svg)](https://coveralls.io/github/neilime/zf-assets-bundle)
+[![Latest Stable Version](https://poser.pugx.org/neilime/zf-assets-bundle/v/stable)](https://packagist.org/packages/neilime/zf-assets-bundle)
+[![Total Downloads](https://poser.pugx.org/neilime/zf-assets-bundle/downloads)](https://packagist.org/packages/neilime/zf-assets-bundle)
+[![License](https://poser.pugx.org/neilime/zf-assets-bundle/license)](https://packagist.org/packages/neilime/zf-assets-bundle)
+[![Beerpay](https://beerpay.io/neilime/zf-assets-bundle/badge.svg)](https://beerpay.io/neilime/zf-assets-bundle) 
 
 📢 __AssetsBundle__ is a module for Zend Framework 3+ providing assets management (minifier, bundler & cache) like Css, Js, Less and Scss, dedicated to current module, controller and action.
 
 This module is "development / production" environment aware.
 
-🔧 In development :
+🔧 In development:
  - Css & Js files are not bundled for easier debugging.
  - Less & Scss files are compiled when updated or if an "@import" file is updated
 
-🚀 In production :
+🚀 In production:
  - All asset files (Css, Js, medias) are __minified__, __bundled__ and __cached__ only if once. 
  - Assets path are encrypted to mask file tree (with the exception of files in the "assets" public directory)
 
 # Helping Project
 
-❤️ If this project helps you reduce time to develop and/or you want to help the maintainer of this project, you can support him on [![Beerpay](https://beerpay.io/neilime/zf-assets-bundle/badge.svg)](https://beerpay.io/neilime/zf-assets-bundle) Thank you !
-
+❤️ If this project helps you reduce time to develop and/or you want to help the maintainer of this project, you can support him on [![Beerpay](https://beerpay.io/neilime/zf-assets-bundle/badge.svg)](https://beerpay.io/neilime/zf-assets-bundle) Thank you!
 
 # Contributing
 
-👍 If you wish to contribute to this project, please read the [CONTRIBUTING.md](CONTRIBUTING.md) file.
-NOTE : If you want to contribute don't hesitate, I'll review any PR.
+👍 If you wish to contribute to this project, please read the [CONTRIBUTING.md](CONTRIBUTING.md) file. Note: If you want to contribute don't hesitate, I'll review any PR.
 
 # Documentation
 
