@@ -28,35 +28,7 @@ This module is "development / production" environment aware.
 👍 If you wish to contribute to this project, please read the [CONTRIBUTING.md](CONTRIBUTING.md) file.
 NOTE : If you want to contribute don't hesitate, I'll review any PR.
 
-# Requirements
-
-## Mandatory
-
-Name | Version
------|--------
-[php](https://secure.php.net/) | >=7.1
-[zendframework/zend-config](https://github.com/zendframework/zend-config) | ^3.2.0
-[zendframework/zend-console](https://github.com/zendframework/zend-console) | ^2.7.0
-[zendframework/zend-eventmanager](https://github.com/zendframework/zend-eventmanager) | ^3.2.1
-[zendframework/zend-http](https://github.com/zendframework/zend-http) | ^2.8.2
-[zendframework/zend-modulemanager](https://github.com/zendframework/zend-modulemanager) | ^2.8.2
-[zendframework/zend-mvc](https://github.com/zendframework/zend-mvc) | ^3.1.1
-[zendframework/zend-mvc-console](https://github.com/zendframework/zend-mvc-console) | ^1.2.0
-[zendframework/zend-servicemanager](https://github.com/zendframework/zend-servicemanager) | ^3.4.0
-[zendframework/zend-view](https://github.com/zendframework/zend-view) | ^2.11.1
-
-## Optionnal
-
-Name | Version | What for 
------|---------|----
-[tubalmartin/cssmin](https://github.com/tubalmartin/cssmin) | ^4.1.1 | PHP port of the YUI CSS compressor
-[neilime/lessphp](https://github.com/neilime/lessphp) | ^0.5 | Lessphp compliant fork
-[oyejorge/less.php](https://github.com/oyejorge/less.php) | ^1.7.0.14 | Less parser
-[leafo/scssphp](https://github.com/leafo/scssphp) | ^0.7.7 | SCSS compiler
-[tedivm/jshrink](https://github.com/tedivm/jshrink) | ^1.3.1 | Javascript Minifier
-[mrclay/jsmin-php](https://github.com/mrclay/jsmin-php) | ^2.4 | Port of Douglas Crockford's jsmin.c
-
-# Pages
+# Documentation
 
 1. [Installation](https://github.com/neilime/zf-assets-bundle/wiki/Installation)
 2. [Use with Zend Skeleton Application](https://github.com/neilime/zf-assets-bundle/wiki/Use-with-Zend-Skeleton-Application)
@@ -64,4 +36,5 @@ Name | Version | What for
 4. [Custom Js](https://github.com/neilime/zf-assets-bundle/wiki/Custom-Js)
 5. [Console tools](https://github.com/neilime/zf-assets-bundle/wiki/Console-tools)
 6. [FAQ](https://github.com/neilime/zf-assets-bundle/wiki/FAQ)
-8. [Code Coverage](https://coveralls.io/github/neilime/zf-assets-bundle?branch=master)
+8. [Code Coverage](https://coveralls.io/github/neilime/zf-assets-bundle)
+9. [PHP Doc](https://neilime.github.io/zf-assets-bundle/phpdoc)
