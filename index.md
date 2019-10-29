@@ -9,7 +9,7 @@ title: Home
 [![Latest Stable Version](https://poser.pugx.org/neilime/zf-assets-bundle/v/stable)](https://packagist.org/packages/neilime/zf-assets-bundle)
 [![Total Downloads](https://poser.pugx.org/neilime/zf-assets-bundle/downloads)](https://packagist.org/packages/neilime/zf-assets-bundle)
 [![License](https://poser.pugx.org/neilime/zf-assets-bundle/license)](https://packagist.org/packages/neilime/zf-assets-bundle)
-[![Beerpay](https://beerpay.io/neilime/zf-assets-bundle/badge.svg)](https://beerpay.io/neilime/zf-assets-bundle) 
+[![Sponsor](https://img.shields.io/badge/%E2%9D%A4-Sponsor-ff69b4)](https://github.com/sponsors/neilime) 
 
 📢 __AssetsBundle__ is a module for Zend Framework 3+ providing assets management (minifier, bundler & cache) like Css, Js, Less and Scss, dedicated to current module, controller and action.
 
@@ -25,7 +25,7 @@ This module is "development / production" environment aware.
 
 # Helping Project
 
-❤️ If this project helps you reduce time to develop and/or you want to help the maintainer of this project, you can support him on [![Beerpay](https://beerpay.io/neilime/zf-assets-bundle/badge.svg)](https://beerpay.io/neilime/zf-assets-bundle) Thank you!
+❤️ If this project helps you reduce time to develop and/or you want to help the maintainer of this project. You can [sponsor](https://github.com/sponsors/neilime) him. Thank you !
 
 # Contributing
 
