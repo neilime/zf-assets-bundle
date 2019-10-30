@@ -2,7 +2,10 @@
 layout: default
 title: Home
 ---
-# AssetsBundle - Zend Framework module
+<p align="center">
+  <a href="https://github.com/neilime/easy-win-setup" target="_blank"><img src="https://repository-images.githubusercontent.com/164403672/a347d680-faf0-11e9-9ced-c9aaa2713010" width="600"></a>
+</p>
+
 
 [![Build Status](https://travis-ci.org/neilime/zf-assets-bundle.svg?branch=master)](https://travis-ci.org/neilime/zf-assets-bundle)
 [![Coverage Status](https://coveralls.io/repos/github/neilime/zf-assets-bundle/badge.svg)](https://coveralls.io/github/neilime/zf-assets-bundle)
