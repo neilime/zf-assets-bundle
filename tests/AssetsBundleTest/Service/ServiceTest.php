@@ -51,7 +51,7 @@ class ServiceTest extends \PHPUnit\Framework\TestCase
         $this->service->setOptions(new \AssetsBundle\Service\ServiceOptions());
 
         // Set fake route match
-        $oRouteMatch = new \Zend\Router\RouteMatch(array('controller' => 'test-module\index-controller', 'action' => 'index'));
+        $oRouteMatch = new \Laminas\Router\RouteMatch(array('controller' => 'test-module\index-controller', 'action' => 'index'));
 
         // Module
         $this->assertInstanceOf('AssetsBundle\Service\ServiceOptions', $this->service->getOptions()->setModuleName(current(explode('\\', $oRouteMatch->getParam('controller')))));

@@ -2,7 +2,7 @@
 
 namespace AssetsBundle\AssetFile;
 
-class AssetFile extends \Zend\Stdlib\AbstractOptions
+class AssetFile extends \Laminas\Stdlib\AbstractOptions
 {
     const ASSET_CSS = 'css';
     const ASSET_JS = 'js';
@@ -124,24 +124,24 @@ class AssetFile extends \Zend\Stdlib\AbstractOptions
             throw new \InvalidArgumentException('Asset\'s file path "' . $sAssetFilePath . '" is not a valid url');
         }
 
-        \Zend\Stdlib\ErrorHandler::start(\E_ALL);
+        \Laminas\Stdlib\ErrorHandler::start(\E_ALL);
         $oFileHandle = fopen($sFilteredAssetFilePath, 'r');
-        \Zend\Stdlib\ErrorHandler::stop(true);
+        \Laminas\Stdlib\ErrorHandler::stop(true);
         if (!$oFileHandle) {
             throw new \InvalidArgumentException('Unable to open asset file "' . $sFilteredAssetFilePath . '"');
         }
 
-        \Zend\Stdlib\ErrorHandler::start(\E_ALL);
+        \Laminas\Stdlib\ErrorHandler::start(\E_ALL);
         $aMetaData = stream_get_meta_data($oFileHandle);
-        \Zend\Stdlib\ErrorHandler::stop(true);
+        \Laminas\Stdlib\ErrorHandler::stop(true);
         if (empty($aMetaData['uri'])) {
             throw new \InvalidArgumentException('Unable to retreive uri metadata from file "' . $sFilteredAssetFilePath . '"');
         }
         $this->assetFilePath = $aMetaData['uri'];
 
-        \Zend\Stdlib\ErrorHandler::start(\E_ALL);
+        \Laminas\Stdlib\ErrorHandler::start(\E_ALL);
         fclose($oFileHandle);
-        \Zend\Stdlib\ErrorHandler::stop(true);
+        \Laminas\Stdlib\ErrorHandler::stop(true);
 
         return $this;
     }
@@ -169,9 +169,9 @@ class AssetFile extends \Zend\Stdlib\AbstractOptions
         $sAssetFilePath = $this->getAssetFilePath();
 
         if ($this->isAssetFilePathUrl()) {
-            \Zend\Stdlib\ErrorHandler::start(\E_ALL);
+            \Laminas\Stdlib\ErrorHandler::start(\E_ALL);
             $oFileHandle = fopen($sAssetFilePath, 'r');
-            \Zend\Stdlib\ErrorHandler::stop(true);
+            \Laminas\Stdlib\ErrorHandler::stop(true);
 
             $this->assetFileContents = '';
             while (($sContent = fgets($oFileHandle)) !== false) {
@@ -214,14 +214,14 @@ class AssetFile extends \Zend\Stdlib\AbstractOptions
             if ($this->assetFileContents) {
                 $this->assetFileContents .= $sAssetFileContents;
             }
-            \Zend\Stdlib\ErrorHandler::start(\E_ALL);
+            \Laminas\Stdlib\ErrorHandler::start(\E_ALL);
             file_put_contents($sAssetFilePath, $sAssetFileContents, FILE_APPEND);
-            \Zend\Stdlib\ErrorHandler::stop(true);
+            \Laminas\Stdlib\ErrorHandler::stop(true);
         } else {
             $this->assetFileContents = $sAssetFileContents;
-            \Zend\Stdlib\ErrorHandler::start(\E_ALL);
+            \Laminas\Stdlib\ErrorHandler::start(\E_ALL);
             file_put_contents($sAssetFilePath, $sAssetFileContents);
-            \Zend\Stdlib\ErrorHandler::stop(true);
+            \Laminas\Stdlib\ErrorHandler::stop(true);
         }
        
         // Update content last retrieved time
@@ -271,9 +271,9 @@ class AssetFile extends \Zend\Stdlib\AbstractOptions
             throw new \LogicException('Asset file "'.$sAssetFilePath.'" does not exist');
         }
 
-        \Zend\Stdlib\ErrorHandler::start(\E_ALL);
+        \Laminas\Stdlib\ErrorHandler::start(\E_ALL);
         $iAssetFileFilemtime = filemtime($sAssetFilePath);
-        \Zend\Stdlib\ErrorHandler::stop(true);
+        \Laminas\Stdlib\ErrorHandler::stop(true);
         return $iAssetFileFilemtime ? : null;
     }
 
@@ -319,9 +319,9 @@ class AssetFile extends \Zend\Stdlib\AbstractOptions
         }
         
         // Local file
-        \Zend\Stdlib\ErrorHandler::start(\E_ALL);
+        \Laminas\Stdlib\ErrorHandler::start(\E_ALL);
         $iAssetFileSize = filesize($this->getAssetFilePath());
-        \Zend\Stdlib\ErrorHandler::stop(true);
+        \Laminas\Stdlib\ErrorHandler::stop(true);
         return $iAssetFileSize ? : null;
     }
 

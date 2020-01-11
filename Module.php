@@ -3,14 +3,14 @@
 namespace AssetsBundle;
 
 class Module implements
-\Zend\ModuleManager\Feature\ConfigProviderInterface,
-    \Zend\ModuleManager\Feature\ConsoleUsageProviderInterface
+\Laminas\ModuleManager\Feature\ConfigProviderInterface,
+    \Laminas\ModuleManager\Feature\ConsoleUsageProviderInterface
 {
 
     /**
-     * @param \Zend\EventManager\EventInterface $oEvent
+     * @param \Laminas\EventManager\EventInterface $oEvent
      */
-    public function onBootstrap(\Zend\EventManager\EventInterface $oEvent)
+    public function onBootstrap(\Laminas\EventManager\EventInterface $oEvent)
     {
         $oApplication = $oEvent->getApplication();
 
@@ -19,11 +19,11 @@ class Module implements
     }
 
     /**
-     * @see \Zend\ModuleManager\Feature\ConsoleUsageProviderInterface::getConsoleUsage()
-     * @param \Zend\Console\Adapter\AdapterInterface $oConsole
+     * @see \Laminas\ModuleManager\Feature\ConsoleUsageProviderInterface::getConsoleUsage()
+     * @param \Laminas\Console\Adapter\AdapterInterface $oConsole
      * @return array
      */
-    public function getConsoleUsage(\Zend\Console\Adapter\AdapterInterface $oConsole)
+    public function getConsoleUsage(\Laminas\Console\Adapter\AdapterInterface $oConsole)
     {
         return array(
             'Rendering assets:',

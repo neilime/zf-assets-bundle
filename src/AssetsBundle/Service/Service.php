@@ -2,7 +2,7 @@
 
 namespace AssetsBundle\Service;
 
-class Service implements \Zend\EventManager\ListenerAggregateInterface
+class Service implements \Laminas\EventManager\ListenerAggregateInterface
 {
 
     /**
@@ -21,7 +21,7 @@ class Service implements \Zend\EventManager\ListenerAggregateInterface
     protected $assetFilesManager;
 
     /**
-     * @var \Zend\View\HelperPluginManager
+     * @var \Laminas\View\HelperPluginManager
      */
     protected $viewHelperPluginManager;
 
@@ -39,26 +39,26 @@ class Service implements \Zend\EventManager\ListenerAggregateInterface
     }
 
     /**
-     * @param \Zend\EventManager\EventManagerInterface $oEventManager
+     * @param \Laminas\EventManager\EventManagerInterface $oEventManager
      * @return \AssetsBundle\Service\Service
      */
-    public function attach(\Zend\EventManager\EventManagerInterface $oEventManager, $iPriority = 1) : \AssetsBundle\Service\Service
+    public function attach(\Laminas\EventManager\EventManagerInterface $oEventManager, $iPriority = 1) : \AssetsBundle\Service\Service
     {
         // Assets rendering
-        $this->listeners[] = $oEventManager->attach(\Zend\Mvc\MvcEvent::EVENT_RENDER, array($this, 'renderAssets'), $iPriority);
+        $this->listeners[] = $oEventManager->attach(\Laminas\Mvc\MvcEvent::EVENT_RENDER, array($this, 'renderAssets'), $iPriority);
 
         // MVC errors
-        $this->listeners[] = $oEventManager->attach(\Zend\Mvc\MvcEvent::EVENT_DISPATCH_ERROR, array($this, 'consoleError'), $iPriority);
-        $this->listeners[] = $oEventManager->attach(\Zend\Mvc\MvcEvent::EVENT_RENDER_ERROR, array($this, 'consoleError'), $iPriority);
+        $this->listeners[] = $oEventManager->attach(\Laminas\Mvc\MvcEvent::EVENT_DISPATCH_ERROR, array($this, 'consoleError'), $iPriority);
+        $this->listeners[] = $oEventManager->attach(\Laminas\Mvc\MvcEvent::EVENT_RENDER_ERROR, array($this, 'consoleError'), $iPriority);
 
         return $this;
     }
 
     /**
-     * @param \Zend\EventManager\EventManagerInterface $oEventManager
+     * @param \Laminas\EventManager\EventManagerInterface $oEventManager
      * @return \AssetsBundle\Service\Service
      */
-    public function detach(\Zend\EventManager\EventManagerInterface $oEventManager) : \AssetsBundle\Service\Service
+    public function detach(\Laminas\EventManager\EventManagerInterface $oEventManager) : \AssetsBundle\Service\Service
     {
         foreach ($this->listeners as $iIndex => $oCallback) {
             if ($oEventManager->detach($oCallback)) {
@@ -71,10 +71,10 @@ class Service implements \Zend\EventManager\ListenerAggregateInterface
     /**
      * Render assets
      *
-     * @param \Zend\Mvc\MvcEvent $oEvent
+     * @param \Laminas\Mvc\MvcEvent $oEvent
      * @return \AssetsBundle\Service\Service
      */
-    public function renderAssets(\Zend\Mvc\MvcEvent $oEvent) : \AssetsBundle\Service\Service
+    public function renderAssets(\Laminas\Mvc\MvcEvent $oEvent) : \AssetsBundle\Service\Service
     {
 
         // Retrieve service manager
@@ -83,11 +83,11 @@ class Service implements \Zend\EventManager\ListenerAggregateInterface
         // Check if asset should be rendered
         if (
             // Assert that request is an Http request
-            !(($oRequest = $oEvent->getRequest()) instanceof \Zend\Http\Request)
+            !(($oRequest = $oEvent->getRequest()) instanceof \Laminas\Http\Request)
             // Not an Ajax request
             || $oRequest->isXmlHttpRequest()
             // Renderer is PHP
-            || !($oServiceManager->get('ViewRenderer') instanceof \Zend\View\Renderer\PhpRenderer)
+            || !($oServiceManager->get('ViewRenderer') instanceof \Laminas\View\Renderer\PhpRenderer)
         ) {
             return $this;
         }
@@ -97,7 +97,7 @@ class Service implements \Zend\EventManager\ListenerAggregateInterface
 
         // Define options from route match
         $oRouteMatch = $oEvent->getRouteMatch();
-        if ($oRouteMatch instanceof \Zend\Router\RouteMatch) {
+        if ($oRouteMatch instanceof \Laminas\Router\RouteMatch) {
             // Retrieve controller
             if ($sControllerName = $oRouteMatch->getParam('controller')) {
                 $oControllerManager = $oServiceManager->get('ControllerManager');
@@ -187,18 +187,18 @@ class Service implements \Zend\EventManager\ListenerAggregateInterface
     /**
      * Display errors to the console, if an error appends during a ToolsController action
      *
-     * @param \Zend\Mvc\MvcEvent $oEvent
+     * @param \Laminas\Mvc\MvcEvent $oEvent
      */
-    public function consoleError(\Zend\Mvc\MvcEvent $oEvent)
+    public function consoleError(\Laminas\Mvc\MvcEvent $oEvent)
     {
         if (
-            ($oRequest = $oEvent->getRequest()) instanceof \Zend\Console\Request 
+            ($oRequest = $oEvent->getRequest()) instanceof \Laminas\Console\Request 
             && $oRequest->getParam('controller') === 'AssetsBundle\Controller\Tools'
         ) {
             $oConsole = $oEvent->getApplication()->getServiceManager()->get('console');
-            $oConsole->writeLine(PHP_EOL . '======================================================================', \Zend\Console\ColorInterface::GRAY);
-            $oConsole->writeLine('An error occured', \Zend\Console\ColorInterface::RED);
-            $oConsole->writeLine('======================================================================', \Zend\Console\ColorInterface::GRAY);
+            $oConsole->writeLine(PHP_EOL . '======================================================================', \Laminas\Console\ColorInterface::GRAY);
+            $oConsole->writeLine('An error occured', \Laminas\Console\ColorInterface::RED);
+            $oConsole->writeLine('======================================================================', \Laminas\Console\ColorInterface::GRAY);
 
             if (!($oException = $oEvent->getParam('exception')) instanceof \Exception) {
                 $oException = new \RuntimeException($oEvent->getError());

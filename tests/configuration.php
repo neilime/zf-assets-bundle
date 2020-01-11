@@ -10,28 +10,28 @@ return array(
     ),
     'router' => array('routes' => array(
             'test' => array(
-                'type' => 'Zend\Router\Http\Literal',
+                'type' => 'Laminas\Router\Http\Literal',
                 'options' => array(
                     'route' => '/test',
                     'defaults' => array('controller' => 'AssetsBundleTest\Controller\Test', 'action' => 'test')
                 )
             ),
             'FileError' => array(
-                'type' => 'Zend\Router\Http\Literal',
+                'type' => 'Laminas\Router\Http\Literal',
                 'options' => array(
                     'route' => '/file-error',
                     'defaults' => array('controller' => 'AssetsBundleTest\Controller\Test', 'action' => 'fileError')
                 )
             ),
             'Empty' => array(
-                'type' => 'Zend\Router\Http\Literal',
+                'type' => 'Laminas\Router\Http\Literal',
                 'options' => array(
                     'route' => '/empty',
                     'defaults' => array('controller' => 'AssetsBundleTest\Controller\Test', 'action' => 'empty')
                 )
             ),
             'Exception' => array(
-                'type' => 'Zend\Router\Http\Literal',
+                'type' => 'Laminas\Router\Http\Literal',
                 'options' => array(
                     'route' => '/exception',
                     'defaults' => array('controller' => 'AssetsBundleTest\Controller\Test', 'action' => 'exception')

@@ -2,7 +2,7 @@
 
 namespace AssetsBundleTest\Controller;
 
-class JsCustomControllerTest extends \Zend\Test\PHPUnit\Controller\AbstractHttpControllerTestCase
+class JsCustomControllerTest extends \Laminas\Test\PHPUnit\Controller\AbstractHttpControllerTestCase
 {
 
     /**
@@ -50,7 +50,7 @@ class JsCustomControllerTest extends \Zend\Test\PHPUnit\Controller\AbstractHttpC
         $aConfiguration = $oServiceLocator->get('Config');
         unset($aConfiguration['assets_bundle']['assets']);
 
-        $this->configuration = \Zend\Stdlib\ArrayUtils::merge($aConfiguration, $this->configuration);
+        $this->configuration = \Laminas\Stdlib\ArrayUtils::merge($aConfiguration, $this->configuration);
         $oServiceLocator->setAllowOverride(true);
         $oServiceLocator->setService('Config', $this->configuration);
         $oServiceLocator->setAllowOverride(false);
@@ -80,7 +80,7 @@ class JsCustomControllerTest extends \Zend\Test\PHPUnit\Controller\AbstractHttpC
         $aConfiguration = $oServiceLocator->get('Config');
         unset($aConfiguration['assets_bundle']['assets']);
 
-        $this->configuration = \Zend\Stdlib\ArrayUtils::merge($aConfiguration, $this->configuration);
+        $this->configuration = \Laminas\Stdlib\ArrayUtils::merge($aConfiguration, $this->configuration);
         $this->configuration['assets_bundle']['production'] = false;
         $oServiceLocator->setAllowOverride(true);
         $oServiceLocator->setService('Config', $this->configuration);
@@ -115,7 +115,7 @@ class JsCustomControllerTest extends \Zend\Test\PHPUnit\Controller\AbstractHttpC
         $aConfiguration = $oServiceLocator->get('Config');
         unset($aConfiguration['assets_bundle']['assets']);
 
-        $this->configuration = \Zend\Stdlib\ArrayUtils::merge($aConfiguration, $this->configuration);
+        $this->configuration = \Laminas\Stdlib\ArrayUtils::merge($aConfiguration, $this->configuration);
         $this->configuration['assets_bundle']['production'] = false;
         $oServiceLocator->setAllowOverride(true);
         $oServiceLocator->setService('Config', $this->configuration);
@@ -136,7 +136,7 @@ class JsCustomControllerTest extends \Zend\Test\PHPUnit\Controller\AbstractHttpC
         $aConfiguration = $oServiceLocator->get('Config');
         unset($aConfiguration['assets_bundle']['assets']);
 
-        $this->configuration = \Zend\Stdlib\ArrayUtils::merge($aConfiguration, $this->configuration);
+        $this->configuration = \Laminas\Stdlib\ArrayUtils::merge($aConfiguration, $this->configuration);
         $this->configuration['assets_bundle']['production'] = false;
         $oServiceLocator->setAllowOverride(true);
         $oServiceLocator->setService('Config', $this->configuration);

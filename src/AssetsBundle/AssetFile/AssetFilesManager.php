@@ -49,9 +49,9 @@ class AssetFilesManager
     {
         foreach ($this->tmpAssetFilesPathes as $sTmpAssetFilePath) {
             if (file_exists($sTmpAssetFilePath)) {
-                \Zend\Stdlib\ErrorHandler::start(\E_ALL);
+                \Laminas\Stdlib\ErrorHandler::start(\E_ALL);
                 unlink($sTmpAssetFilePath);
-                \Zend\Stdlib\ErrorHandler::stop(true);
+                \Laminas\Stdlib\ErrorHandler::stop(true);
             }
         }
     }
@@ -130,9 +130,9 @@ class AssetFilesManager
                 ). PHP_EOL);
 
                 // Remove temp less asset file
-                \Zend\Stdlib\ErrorHandler::start(\E_ALL);
+                \Laminas\Stdlib\ErrorHandler::start(\E_ALL);
                 unlink($oAssetFile->getAssetFilePath());
-                \Zend\Stdlib\ErrorHandler::stop(true);
+                \Laminas\Stdlib\ErrorHandler::stop(true);
             }
 
             // Merge css asset files
@@ -188,15 +188,15 @@ class AssetFilesManager
 
             // Retrieve asset file cached if exists
             if (file_exists($sAssetFileCachedPath = $oAssetFilesCacheManager->getAssetFileCachePath($oTmpAssetFile))) {
-                \Zend\Stdlib\ErrorHandler::start(\E_ALL);
+                \Laminas\Stdlib\ErrorHandler::start(\E_ALL);
                 $iAssetFileCachedFilemtime = filemtime($sAssetFileCachedPath);
-                \Zend\Stdlib\ErrorHandler::stop(true);
+                \Laminas\Stdlib\ErrorHandler::stop(true);
             } else {
                 $iAssetFileCachedFilemtime = null;
             }
 
             // Build import file
-            \Zend\Stdlib\ErrorHandler::start(\E_ALL);
+            \Laminas\Stdlib\ErrorHandler::start(\E_ALL);
             $bIsUptoDate = !$this->getAssetFilesConfiguration()->assetsConfigurationHasChanged(array($sAssetType));
 
             $bHasContent = false;
@@ -218,7 +218,7 @@ class AssetFilesManager
                     $oTmpAssetFile->setAssetFileContents($sTmpContent . PHP_EOL);
                 }
             }
-            \Zend\Stdlib\ErrorHandler::stop(true);
+            \Laminas\Stdlib\ErrorHandler::stop(true);
 
 
             // If file is up to date return cached asset file
@@ -445,12 +445,12 @@ class AssetFilesManager
             throw new \InvalidArgumentException('Asset file type "' . $sAssetFileType . '" is not valid');
         }
         // Create tmp asset file
-        \Zend\Stdlib\ErrorHandler::start(\E_ALL);
+        \Laminas\Stdlib\ErrorHandler::start(\E_ALL);
         $sTmpAssetFilePath = tempnam(
             $this->getOptions()->getTmpDirPath(),
             $sAssetFileType . '_' . uniqid()
         );
-        \Zend\Stdlib\ErrorHandler::stop(true);
+        \Laminas\Stdlib\ErrorHandler::stop(true);
         $this->tmpAssetFilesPathes[] = $sTmpAssetFilePath;
         return new \AssetsBundle\AssetFile\AssetFile([
             'asset_file_type' => $sAssetFileType,

@@ -1,9 +1,9 @@
 <?php
 namespace AssetsBundle\Factory;
-class JsCustomStrategyFactory implements \Zend\ServiceManager\Factory\FactoryInterface{
+class JsCustomStrategyFactory implements \Laminas\ServiceManager\Factory\FactoryInterface{
 
 	/**
-	 * @see \Zend\ServiceManager\Factory\FactoryInterface::__invoke()
+	 * @see \Laminas\ServiceManager\Factory\FactoryInterface::__invoke()
 	 * @param \Interop\Container\ContainerInterface $oServiceLocator
 	 * @return \AssetsBundle\View\Strategy\JsCustomStrategy
 	 */

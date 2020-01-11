@@ -2,7 +2,7 @@
 
 namespace AssetsBundle\Controller;
 
-class ToolsController extends \Zend\Mvc\Console\Controller\AbstractConsoleController
+class ToolsController extends \Laminas\Mvc\Console\Controller\AbstractConsoleController
 {
 
     /**

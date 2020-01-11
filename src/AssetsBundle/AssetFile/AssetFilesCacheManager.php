@@ -148,55 +148,55 @@ class AssetFilesCacheManager
 
         // Create directory if not exists
         if (!is_dir($sCacheFileDirPath)) {
-            \Zend\Stdlib\ErrorHandler::start(\E_ALL);
+            \Laminas\Stdlib\ErrorHandler::start(\E_ALL);
             if (!mkdir($sCacheFileDirPath, $this->getOptions()->getDirectoriesPermissions(), true)) {
                 throw new \RuntimeException('Error occured while creating directory "' . $sCacheFileDirPath . '"');
             }
-            if ($oException = \Zend\Stdlib\ErrorHandler::stop()) {
+            if ($oException = \Laminas\Stdlib\ErrorHandler::stop()) {
                 throw new \RuntimeException('Error occured while creating directory "' . $sCacheFileDirPath . '"', $oException->getCode(), $oException);
             }
         } elseif (!is_writable($sCacheFileDirPath)) {
-            \Zend\Stdlib\ErrorHandler::start(\E_ALL);
+            \Laminas\Stdlib\ErrorHandler::start(\E_ALL);
             if (!chmod($sCacheFileDirPath, $this->getOptions()->getDirectoriesPermissions())) {
                 throw new \RuntimeException('Error occured while changing mode on directory "' . $sCacheFileDirPath . '"');
             }
-            \Zend\Stdlib\ErrorHandler::stop(true);
+            \Laminas\Stdlib\ErrorHandler::stop(true);
         }
 
         $bFileExists = file_exists($sCacheFilePath);
 
         // Cache remote asset file
         if ($oAssetFile->isAssetFilePathUrl()) {
-            \Zend\Stdlib\ErrorHandler::start(\E_ALL);
+            \Laminas\Stdlib\ErrorHandler::start(\E_ALL);
             $oAssetFileFileHandle = fopen($oAssetFile->getAssetFilePath(), 'rb');
-            \Zend\Stdlib\ErrorHandler::stop(true);
+            \Laminas\Stdlib\ErrorHandler::stop(true);
             if (!$oAssetFileFileHandle) {
                 throw new \LogicException('Unable to open asset file "' . $oAssetFile->getAssetFilePath() . '"');
             }
 
-            \Zend\Stdlib\ErrorHandler::start(\E_ALL);
+            \Laminas\Stdlib\ErrorHandler::start(\E_ALL);
             file_put_contents($sCacheFilePath, stream_get_contents($oAssetFileFileHandle));
-            \Zend\Stdlib\ErrorHandler::stop(true);
+            \Laminas\Stdlib\ErrorHandler::stop(true);
 
-            \Zend\Stdlib\ErrorHandler::start(\E_ALL);
+            \Laminas\Stdlib\ErrorHandler::start(\E_ALL);
             fclose($oAssetFileFileHandle);
-            \Zend\Stdlib\ErrorHandler::stop(true);
+            \Laminas\Stdlib\ErrorHandler::stop(true);
         }
         // Cache local asset file
         else {
-            \Zend\Stdlib\ErrorHandler::start(\E_ALL);
+            \Laminas\Stdlib\ErrorHandler::start(\E_ALL);
             $sAssetFilePath = $oAssetFile->getAssetFilePath();
             if (!is_file($sAssetFilePath)) {
                 throw new \LogicException('Asset file "' . $sAssetFilePath . '" does not exits');
             }
             copy($sAssetFilePath, $sCacheFilePath);
-            \Zend\Stdlib\ErrorHandler::stop(true);
+            \Laminas\Stdlib\ErrorHandler::stop(true);
         }
 
         if (!$bFileExists) {
-            \Zend\Stdlib\ErrorHandler::start(\E_ALL);
+            \Laminas\Stdlib\ErrorHandler::start(\E_ALL);
             chmod($sCacheFilePath, $this->getOptions()->getFilesPermissions());
-            \Zend\Stdlib\ErrorHandler::stop(true);
+            \Laminas\Stdlib\ErrorHandler::stop(true);
         }
 
         return $oAssetFile->setAssetFilePath($sCacheFilePath);
@@ -209,10 +209,10 @@ class AssetFilesCacheManager
     public function isAssetFileCached(\AssetsBundle\AssetFile\AssetFile $oAssetFile) : bool
     {
         if (file_exists($sAssetFileCachedPath = $this->getAssetFileCachePath($oAssetFile))) {
-            \Zend\Stdlib\ErrorHandler::start(\E_ALL);
+            \Laminas\Stdlib\ErrorHandler::start(\E_ALL);
             // Can't retrieve last modified from url, don't reload it
             $bIsUpdated = (!($iLastModified = $oAssetFile->getAssetFileLastModified()) && $oAssetFile->isAssetFilePathUrl()) ? true : ($iLastModified && filemtime($sAssetFileCachedPath) >= $iLastModified);
-            \Zend\Stdlib\ErrorHandler::stop(true);
+            \Laminas\Stdlib\ErrorHandler::stop(true);
             return $bIsUpdated;
         }
         return false;

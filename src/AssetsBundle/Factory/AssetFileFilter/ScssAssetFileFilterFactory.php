@@ -2,7 +2,7 @@
 
 namespace AssetsBundle\Factory\AssetFileFilter;
 
-class ScssAssetFileFilterFactory implements \Zend\ServiceManager\Factory\FactoryInterface {
+class ScssAssetFileFilterFactory implements \Laminas\ServiceManager\Factory\FactoryInterface {
 
     /**
      * @param \Interop\Container\ContainerInterface $oServiceLocator

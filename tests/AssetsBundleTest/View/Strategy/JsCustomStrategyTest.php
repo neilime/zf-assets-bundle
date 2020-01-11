@@ -53,7 +53,7 @@ class JsCustomStrategyTest extends \PHPUnit\Framework\TestCase
     public function testSelectRendererReturnNullByDefault()
     {
         $this->assertNull(
-            $this->jsCustomStrategy->setRouter(\AssetsBundleTest\Bootstrap::getServiceManager()->get('router'))->selectRenderer(new \Zend\View\ViewEvent())
+            $this->jsCustomStrategy->setRouter(\AssetsBundleTest\Bootstrap::getServiceManager()->get('router'))->selectRenderer(new \Laminas\View\ViewEvent())
         );
     }
 
@@ -74,20 +74,20 @@ class JsCustomStrategyTest extends \PHPUnit\Framework\TestCase
         if (isset($aApplicationConfig['module_listener_options']['config_cache_enabled'])) {
             $aApplicationConfig['module_listener_options']['config_cache_enabled'] = false;
         }
-        \Zend\Console\Console::overrideIsConsole(false);
-        $oApplication = \Zend\Mvc\Application::init($aApplicationConfig);
+        \Laminas\Console\Console::overrideIsConsole(false);
+        $oApplication = \Laminas\Mvc\Application::init($aApplicationConfig);
         $oApplication->getServiceManager()->get('SendResponseListener')->detach($oApplication->getEventManager());
 
         $oRequest = $oApplication->getRequest();
-        $oUri = new \Zend\Uri\Http('/jscustom/AssetsBundleTest\\Controller\\Test/test');
+        $oUri = new \Laminas\Uri\Http('/jscustom/AssetsBundleTest\\Controller\\Test/test');
 
-        $oRequest->setMethod(\Zend\Http\Request::METHOD_GET)
+        $oRequest->setMethod(\Laminas\Http\Request::METHOD_GET)
                 ->setUri($oUri)
                 ->setRequestUri($oUri->getPath());
 
         $oApplication->run();
 
-        $oViewEvent = new \Zend\View\ViewEvent();
+        $oViewEvent = new \Laminas\View\ViewEvent();
         $this->jsCustomStrategy
                 ->setRouter($oApplication->getServiceManager()->get('router'))
                 ->selectRenderer($oViewEvent->setRequest($oRequest));

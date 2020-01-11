@@ -2,7 +2,7 @@
 
 namespace AssetsBundle\Factory\AssetFileFilter;
 
-class LessphpAssetFileFilterFactory implements \Zend\ServiceManager\Factory\FactoryInterface {
+class LessphpAssetFileFilterFactory implements \Laminas\ServiceManager\Factory\FactoryInterface {
 
     /**
      * @param \Interop\Container\ContainerInterface $oServiceLocator

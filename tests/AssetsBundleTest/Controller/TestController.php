@@ -5,7 +5,7 @@ namespace AssetsBundleTest\Controller;
 class TestController extends \AssetsBundle\Mvc\Controller\AbstractActionController {
 
     public function testAction() {
-        $oView = new \Zend\View\Model\ViewModel();
+        $oView = new \Laminas\View\Model\ViewModel();
         return $oView->setTemplate('test')->setTerminal(true);
     }
 
