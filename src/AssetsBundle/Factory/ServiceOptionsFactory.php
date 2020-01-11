@@ -2,11 +2,11 @@
 
 namespace AssetsBundle\Factory;
 
-class ServiceOptionsFactory implements \Zend\ServiceManager\Factory\FactoryInterface
+class ServiceOptionsFactory implements \Laminas\ServiceManager\Factory\FactoryInterface
 {
 
     /**
-     * @see \Zend\ServiceManager\Factory\FactoryInterface::__invoke()
+     * @see \Laminas\ServiceManager\Factory\FactoryInterface::__invoke()
      * @param \Interop\Container\ContainerInterface $oServiceLocator
      * @param string $sRequestedName
      * @param array $aOptions
@@ -22,17 +22,17 @@ class ServiceOptionsFactory implements \Zend\ServiceManager\Factory\FactoryInter
 
         $aOptions = $aConfiguration['assets_bundle'];
         if ($aOptions instanceof \Traversable) {
-            $aOptions = \Zend\Stdlib\ArrayUtils::iteratorToArray($aOptions);
+            $aOptions = \Laminas\Stdlib\ArrayUtils::iteratorToArray($aOptions);
         } elseif (!is_array($aOptions)) {
             throw new \InvalidArgumentException('"assets_bundle" configuration expects an array or Traversable object; received "' . (is_object($aOptions) ? get_class($aOptions) : gettype($aOptions)) . '"');
         }
 
         //Define base URL of the application
         if (!isset($aOptions['baseUrl'])) {
-            if (($oRequest = $oServiceLocator->get('request')) instanceof \Zend\Http\PhpEnvironment\Request) {
+            if (($oRequest = $oServiceLocator->get('request')) instanceof \Laminas\Http\PhpEnvironment\Request) {
                 $aOptions['baseUrl'] = $oRequest->getBaseUrl();
             } else {
-                $oRequest = new \Zend\Http\PhpEnvironment\Request();
+                $oRequest = new \Laminas\Http\PhpEnvironment\Request();
                 $aOptions['baseUrl'] = $oRequest->getBaseUrl();
             }
         }
@@ -41,7 +41,7 @@ class ServiceOptionsFactory implements \Zend\ServiceManager\Factory\FactoryInter
         if (isset($aOptions['view_helper_plugins'])) {
             $aViewHelperPlugins = $aOptions['view_helper_plugins'];
             if ($aViewHelperPlugins instanceof \Traversable) {
-                $aViewHelperPlugins = \Zend\Stdlib\ArrayUtils::iteratorToArray($aOptions);
+                $aViewHelperPlugins = \Laminas\Stdlib\ArrayUtils::iteratorToArray($aOptions);
             } elseif (!is_array($aViewHelperPlugins)) {
                 throw new \InvalidArgumentException('Assets bundle "filters" option expects an array or Traversable object; received "' . (is_object($aViewHelperPlugins) ? get_class($aViewHelperPlugins) : gettype($aViewHelperPlugins)) . '"');
             }
@@ -61,10 +61,10 @@ class ServiceOptionsFactory implements \Zend\ServiceManager\Factory\FactoryInter
                         throw new \LogicException('View helper plugin "' . $oViewHelperPlugin . '" is not a registered service or an existing class');
                     }
 
-                    if ($oViewHelperPlugin instanceof \Zend\View\Helper\HelperInterface) {
+                    if ($oViewHelperPlugin instanceof \Laminas\View\Helper\HelperInterface) {
                         $aViewHelperPlugins[$sAssetFileType] = $oViewHelperPlugin;
                     } else {
-                        throw new \LogicException('View helper plugin expects an instance of "\Zend\View\Helper\HelperInterface", "' . get_class($oViewHelperPlugin) . '" given');
+                        throw new \LogicException('View helper plugin expects an instance of "\Laminas\View\Helper\HelperInterface", "' . get_class($oViewHelperPlugin) . '" given');
                     }
                 }
             }

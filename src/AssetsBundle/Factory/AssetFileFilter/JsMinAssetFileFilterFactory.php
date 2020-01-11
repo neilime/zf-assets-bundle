@@ -2,7 +2,7 @@
 
 namespace AssetsBundle\Factory\AssetFileFilter;
 
-class JsMinAssetFileFilterFactory implements \Zend\ServiceManager\Factory\FactoryInterface
+class JsMinAssetFileFilterFactory implements \Laminas\ServiceManager\Factory\FactoryInterface
 {
 
     /**

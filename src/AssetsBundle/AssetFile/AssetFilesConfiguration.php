@@ -252,9 +252,9 @@ class AssetFilesConfiguration
 
         // Retrieve saved onfiguration file
         if (file_exists($sConfigFilePath = $this->getConfigurationFilePath())) {
-            \Zend\Stdlib\ErrorHandler::start(\E_ALL);
+            \Laminas\Stdlib\ErrorHandler::start(\E_ALL);
             $aConfig = include $sConfigFilePath;
-            \Zend\Stdlib\ErrorHandler::stop(true);
+            \Laminas\Stdlib\ErrorHandler::stop(true);
 
             if ($aConfig === false || !is_array($aConfig)) {
                 throw new \RuntimeException('Unable to get file content from file "' . $sConfigFilePath . '"');
@@ -312,18 +312,18 @@ class AssetFilesConfiguration
 
         // Create dir if needed
         if (!($bFileExists = file_exists($sConfigurationFilePath)) && !is_dir($sConfigurationFileDirPath = dirname($sConfigurationFilePath))) {
-            \Zend\Stdlib\ErrorHandler::start(\E_ALL);
+            \Laminas\Stdlib\ErrorHandler::start(\E_ALL);
             mkdir($sConfigurationFileDirPath, $this->getOptions()->getDirectoriesPermissions());
-            \Zend\Stdlib\ErrorHandler::stop(true);
+            \Laminas\Stdlib\ErrorHandler::stop(true);
         }
 
-        \Zend\Stdlib\ErrorHandler::start(\E_ALL);
+        \Laminas\Stdlib\ErrorHandler::start(\E_ALL);
         file_put_contents($sConfigurationFilePath, '<?php' . PHP_EOL . 'return ' . var_export($this->getOptions()->getAssets(), 1) . ';');
-        \Zend\Stdlib\ErrorHandler::stop(true);
+        \Laminas\Stdlib\ErrorHandler::stop(true);
         if (!$bFileExists) {
-            \Zend\Stdlib\ErrorHandler::start(\E_ALL);
+            \Laminas\Stdlib\ErrorHandler::start(\E_ALL);
             chmod($sConfigurationFilePath, $this->getOptions()->getFilesPermissions());
-            \Zend\Stdlib\ErrorHandler::stop(true);
+            \Laminas\Stdlib\ErrorHandler::stop(true);
         }
         return $this;
     }

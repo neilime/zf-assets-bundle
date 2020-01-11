@@ -2,10 +2,10 @@
 
 namespace AssetsBundle\View\Renderer;
 
-class JsCustomRenderer implements \Zend\View\Renderer\RendererInterface {
+class JsCustomRenderer implements \Laminas\View\Renderer\RendererInterface {
 
     /**
-     * @var \Zend\View\Resolver\ResolverInterface
+     * @var \Laminas\View\Resolver\ResolverInterface
      */
     protected $resolver;
 
@@ -18,10 +18,10 @@ class JsCustomRenderer implements \Zend\View\Renderer\RendererInterface {
 
     /**
      * Set the resolver used to map a template name to a resource the renderer may consume.
-     * @param \Zend\View\Resolver\ResolverInterface $oResolver
+     * @param \Laminas\View\Resolver\ResolverInterface $oResolver
      * @return \AssetsBundle\View\Renderer\JsRenderer
      */
-    public function setResolver(\Zend\View\Resolver\ResolverInterface $oResolver) {
+    public function setResolver(\Laminas\View\Resolver\ResolverInterface $oResolver) {
         $this->resolver = $oResolver;
         return $this;
     }
@@ -35,9 +35,9 @@ class JsCustomRenderer implements \Zend\View\Renderer\RendererInterface {
      * @throws \LogicException
      */
     public function render($oViewModel, $aValues = null) {
-        if (!($oViewModel instanceof \Zend\View\Model\ViewModel)) {
+        if (!($oViewModel instanceof \Laminas\View\Model\ViewModel)) {
             throw new \InvalidArgumentException(sprintf(
-                    'View Model expects an instance of \Zend\View\Model\ViewModel, "%s" given', is_object($oViewModel) ? get_class($oViewModel) : gettype($oViewModel)
+                    'View Model expects an instance of \Laminas\View\Model\ViewModel, "%s" given', is_object($oViewModel) ? get_class($oViewModel) : gettype($oViewModel)
             ));
         }
         $aJsFiles = $oViewModel->getVariable('jsCustomFiles');

@@ -2,7 +2,7 @@
 
 namespace AssetsBundle\Factory\AssetFileFilter;
 
-class GifAssetFileFilterFactory implements \Zend\ServiceManager\Factory\FactoryInterface {
+class GifAssetFileFilterFactory implements \Laminas\ServiceManager\Factory\FactoryInterface {
 
     /**
      * @param \Interop\Container\ContainerInterface $oServiceLocator

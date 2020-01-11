@@ -18,11 +18,11 @@ abstract class AbstractImageAssetFileFilter extends \AssetsBundle\AssetFile\Asse
         }
 
         // Optimize image
-        \Zend\Stdlib\ErrorHandler::start(\E_ALL);
+        \Laminas\Stdlib\ErrorHandler::start(\E_ALL);
         $rImage = imagecreatefromstring($sContent);
         imagealphablending($rImage, false);
         imagesavealpha($rImage, true);
-        \Zend\Stdlib\ErrorHandler::stop(true);
+        \Laminas\Stdlib\ErrorHandler::stop(true);
         return $this->optimizeImage($rImage);
     }
 

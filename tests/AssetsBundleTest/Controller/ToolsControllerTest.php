@@ -2,7 +2,7 @@
 
 namespace AssetsBundleTest\Controller;
 
-class ToolsControllerTest extends \Zend\Test\PHPUnit\Controller\AbstractConsoleControllerTestCase
+class ToolsControllerTest extends \Laminas\Test\PHPUnit\Controller\AbstractConsoleControllerTestCase
 {
 
     /**
@@ -75,7 +75,7 @@ class ToolsControllerTest extends \Zend\Test\PHPUnit\Controller\AbstractConsoleC
 
         // Override configuration
         unset($aConfiguration['assets_bundle']['assets']);
-        $oServiceLocator->setService('Config', $this->configuration = \Zend\Stdlib\ArrayUtils::merge($aConfiguration, $this->configuration));
+        $oServiceLocator->setService('Config', $this->configuration = \Laminas\Stdlib\ArrayUtils::merge($aConfiguration, $this->configuration));
 
         // Rebuild AssetsBundle service options
         $oServiceLocator->setService('AssetsBundleServiceOptions', $oServiceLocator->build('AssetsBundleServiceOptions'));

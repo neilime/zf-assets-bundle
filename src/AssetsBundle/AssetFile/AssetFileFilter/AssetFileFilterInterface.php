@@ -2,7 +2,7 @@
 
 namespace AssetsBundle\AssetFile\AssetFileFilter;
 
-interface AssetFileFilterInterface extends \Zend\Stdlib\ParameterObjectInterface {
+interface AssetFileFilterInterface extends \Laminas\Stdlib\ParameterObjectInterface {
 
     /**
      * @param \AssetsBundle\AssetFile\AssetFile $oAssetFile

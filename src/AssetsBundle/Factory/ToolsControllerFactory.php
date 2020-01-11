@@ -2,11 +2,11 @@
 
 namespace AssetsBundle\Factory;
 
-class ToolsControllerFactory implements \Zend\ServiceManager\Factory\FactoryInterface
+class ToolsControllerFactory implements \Laminas\ServiceManager\Factory\FactoryInterface
 {
 
     /**
-     * @see \Zend\ServiceManager\Factory\FactoryInterface::__invoke()
+     * @see \Laminas\ServiceManager\Factory\FactoryInterface::__invoke()
      * @param \Interop\Container\ContainerInterface $oServiceLocator
      * @param string $sRequestedName
      * @param array $aOptions

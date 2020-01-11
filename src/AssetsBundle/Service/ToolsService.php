@@ -6,12 +6,12 @@ class ToolsService
 {
 
     /**
-     * @var \Zend\Console\Adapter\AdapterInterface
+     * @var \Laminas\Console\Adapter\AdapterInterface
      */
     protected $console;
 
     /**
-     * @var \Zend\Mvc\MvcEvent
+     * @var \Laminas\Mvc\MvcEvent
      */
     protected $mvcEvent;
 
@@ -28,22 +28,22 @@ class ToolsService
 
         // Initialize AssetsBundle service
         $oAssetsBundleService = $this->getAssetsBundleService();
-        $oAssetsBundleService->getOptions()->setRenderer(new \Zend\View\Renderer\PhpRenderer());
+        $oAssetsBundleService->getOptions()->setRenderer(new \Laminas\View\Renderer\PhpRenderer());
 
         // Start process
         $oConsole = $this->getConsole();
         $oConsole->writeLine('');
-        $oConsole->writeLine('======================================================================', \Zend\Console\ColorInterface::WHITE);
-        $oConsole->writeLine('Render all assets for ' . ($oAssetsBundleService->getOptions()->isProduction() ? 'production' : 'development'), \Zend\Console\ColorInterface::GREEN);
-        $oConsole->writeLine('======================================================================', \Zend\Console\ColorInterface::WHITE);
+        $oConsole->writeLine('======================================================================', \Laminas\Console\ColorInterface::WHITE);
+        $oConsole->writeLine('Render all assets for ' . ($oAssetsBundleService->getOptions()->isProduction() ? 'production' : 'development'), \Laminas\Console\ColorInterface::GREEN);
+        $oConsole->writeLine('======================================================================', \Laminas\Console\ColorInterface::WHITE);
         $oConsole->writeLine('');
 
         // Empty cache directory
         $this->emptyCache();
 
         $oConsole->writeLine('');
-        $oConsole->writeLine('Start rendering assets : ', \Zend\Console\ColorInterface::GREEN);
-        $oConsole->writeLine('-------------------------', \Zend\Console\ColorInterface::WHITE);
+        $oConsole->writeLine('Start rendering assets : ', \Laminas\Console\ColorInterface::GREEN);
+        $oConsole->writeLine('-------------------------', \Laminas\Console\ColorInterface::WHITE);
         $oConsole->writeLine('');
         $aUnwantedKeys = array_fill_keys(\AssetsBundle\AssetFile\AssetFile::ALL_ASSET_TYPES, true);
         
@@ -51,7 +51,7 @@ class ToolsService
         $oMvcEvent = $this->getMvcEvent();
 
         // Reset route match and request
-        $oMvcEvent->setRouteMatch(new \Zend\Router\RouteMatch(array()))->setRequest(new \Zend\Http\Request());
+        $oMvcEvent->setRouteMatch(new \Laminas\Router\RouteMatch(array()))->setRequest(new \Laminas\Http\Request());
 
         // Retrieve AssetsBundle service options
         $oOptions = $oAssetsBundleService->getOptions();
@@ -65,10 +65,10 @@ class ToolsService
 
             // If module has global assets
             if (array_intersect_key($aModuleConfig, $aUnwantedKeys)) {
-                $oConsole->write(' * ', \Zend\Console\ColorInterface::WHITE);
-                $oConsole->write('[' . $sModuleName . ']', \Zend\Console\ColorInterface::LIGHT_CYAN);
-                $oConsole->write('[No controller]', \Zend\Console\ColorInterface::LIGHT_BLUE);
-                $oConsole->write('[No action]' . PHP_EOL, \Zend\Console\ColorInterface::LIGHT_WHITE);
+                $oConsole->write(' * ', \Laminas\Console\ColorInterface::WHITE);
+                $oConsole->write('[' . $sModuleName . ']', \Laminas\Console\ColorInterface::LIGHT_CYAN);
+                $oConsole->write('[No controller]', \Laminas\Console\ColorInterface::LIGHT_BLUE);
+                $oConsole->write('[No action]' . PHP_EOL, \Laminas\Console\ColorInterface::LIGHT_WHITE);
 
                 // Render assets for no_controller and no_action
                 $oOptions->setControllerName(\AssetsBundle\Service\ServiceOptions::NO_CONTROLLER)
@@ -82,10 +82,10 @@ class ToolsService
 
                 // If controller has global assets
                 if (array_intersect_key($aControllerConfig, $aUnwantedKeys)) {
-                    $oConsole->write(' * ', \Zend\Console\ColorInterface::WHITE);
-                    $oConsole->write('[' . $sModuleName . ']', \Zend\Console\ColorInterface::LIGHT_CYAN);
-                    $oConsole->write('[' . $sControllerName . ']', \Zend\Console\ColorInterface::LIGHT_BLUE);
-                    $oConsole->write('[No action]' . PHP_EOL, \Zend\Console\ColorInterface::LIGHT_WHITE);
+                    $oConsole->write(' * ', \Laminas\Console\ColorInterface::WHITE);
+                    $oConsole->write('[' . $sModuleName . ']', \Laminas\Console\ColorInterface::LIGHT_CYAN);
+                    $oConsole->write('[' . $sControllerName . ']', \Laminas\Console\ColorInterface::LIGHT_BLUE);
+                    $oConsole->write('[No action]' . PHP_EOL, \Laminas\Console\ColorInterface::LIGHT_WHITE);
 
                     // Render assets for no_action
                     $oOptions->setActionName(\AssetsBundle\Service\ServiceOptions::NO_ACTION);
@@ -95,10 +95,10 @@ class ToolsService
                 foreach (array_diff_key($aAssetsConfiguration[$sModuleName][$sControllerName], $aUnwantedKeys) as $sActionName => $aActionConfig) {
                     // Render assets for action
                     if (array_intersect_key($aActionConfig, $aUnwantedKeys)) {
-                        $oConsole->write(' * ', \Zend\Console\ColorInterface::WHITE);
-                        $oConsole->write('[' . $sModuleName . ']', \Zend\Console\ColorInterface::LIGHT_CYAN);
-                        $oConsole->write('[' . $sControllerName . ']', \Zend\Console\ColorInterface::LIGHT_BLUE);
-                        $oConsole->write('[' . $sActionName . ']' . PHP_EOL, \Zend\Console\ColorInterface::LIGHT_WHITE);
+                        $oConsole->write(' * ', \Laminas\Console\ColorInterface::WHITE);
+                        $oConsole->write('[' . $sModuleName . ']', \Laminas\Console\ColorInterface::LIGHT_CYAN);
+                        $oConsole->write('[' . $sControllerName . ']', \Laminas\Console\ColorInterface::LIGHT_BLUE);
+                        $oConsole->write('[' . $sActionName . ']' . PHP_EOL, \Laminas\Console\ColorInterface::LIGHT_WHITE);
 
                         $oAssetsBundleService->getOptions()->setActionName($sActionName);
                         $oAssetsBundleService->renderAssets($oMvcEvent);
@@ -107,10 +107,10 @@ class ToolsService
             }
         }
         //Render global assets
-        $oConsole->write(' * ', \Zend\Console\ColorInterface::WHITE);
-        $oConsole->write('[No module]', \Zend\Console\ColorInterface::LIGHT_CYAN);
-        $oConsole->write('[No controller]', \Zend\Console\ColorInterface::LIGHT_BLUE);
-        $oConsole->write('[No action]' . PHP_EOL, \Zend\Console\ColorInterface::LIGHT_WHITE);
+        $oConsole->write(' * ', \Laminas\Console\ColorInterface::WHITE);
+        $oConsole->write('[No module]', \Laminas\Console\ColorInterface::LIGHT_CYAN);
+        $oConsole->write('[No controller]', \Laminas\Console\ColorInterface::LIGHT_BLUE);
+        $oConsole->write('[No action]' . PHP_EOL, \Laminas\Console\ColorInterface::LIGHT_WHITE);
         $oAssetsBundleService->getOptions()
                 ->setModuleName(\AssetsBundle\Service\ServiceOptions::NO_MODULE)
                 ->setControllerName(\AssetsBundle\Service\ServiceOptions::NO_CONTROLLER)
@@ -118,8 +118,8 @@ class ToolsService
         $oAssetsBundleService->renderAssets($oMvcEvent);
 
         $oConsole->writeLine('');
-        $oConsole->writeLine('---------------', \Zend\Console\ColorInterface::WHITE);
-        $oConsole->writeLine('Assets rendered', \Zend\Console\ColorInterface::GREEN);
+        $oConsole->writeLine('---------------', \Laminas\Console\ColorInterface::WHITE);
+        $oConsole->writeLine('Assets rendered', \Laminas\Console\ColorInterface::GREEN);
         $oConsole->writeLine('');
 
         return $this;
@@ -134,9 +134,9 @@ class ToolsService
         if ($bDisplayConsoleMessage) {
             $oConsole = $this->getConsole();
             $oConsole->writeLine('');
-            $oConsole->writeLine('========================', \Zend\Console\ColorInterface::WHITE);
-            $oConsole->writeLine('Empty cache', \Zend\Console\ColorInterface::GREEN);
-            $oConsole->writeLine('========================', \Zend\Console\ColorInterface::WHITE);
+            $oConsole->writeLine('========================', \Laminas\Console\ColorInterface::WHITE);
+            $oConsole->writeLine('Empty cache', \Laminas\Console\ColorInterface::GREEN);
+            $oConsole->writeLine('========================', \Laminas\Console\ColorInterface::WHITE);
             $oConsole->writeLine('');
         }
 
@@ -174,7 +174,7 @@ class ToolsService
                 }
             }
             if ($bDisplayConsoleMessage) {
-                $oConsole->writeLine(' * "'.$sName.'" directory is empty', \Zend\Console\ColorInterface::WHITE);
+                $oConsole->writeLine(' * "'.$sName.'" directory is empty', \Laminas\Console\ColorInterface::WHITE);
             }
         }
         
@@ -183,44 +183,44 @@ class ToolsService
     }
 
     /**
-     * @return \Zend\Console\Adapter\AdapterInterface
+     * @return \Laminas\Console\Adapter\AdapterInterface
      * @throws \LogicException
      */
-    public function getConsole() : \Zend\Console\Adapter\AdapterInterface
+    public function getConsole() : \Laminas\Console\Adapter\AdapterInterface
     {
-        if ($this->console instanceof \Zend\Console\Adapter\AdapterInterface) {
+        if ($this->console instanceof \Laminas\Console\Adapter\AdapterInterface) {
             return $this->console;
         }
         throw new \LogicException('Console is undefined');
     }
 
     /**
-     * @param \Zend\Console\Adapter\AdapterInterface $oConsole
+     * @param \Laminas\Console\Adapter\AdapterInterface $oConsole
      * @return \AssetsBundle\Service\ToolsService
      */
-    public function setConsole(\Zend\Console\Adapter\AdapterInterface $oConsole) : \AssetsBundle\Service\ToolsService
+    public function setConsole(\Laminas\Console\Adapter\AdapterInterface $oConsole) : \AssetsBundle\Service\ToolsService
     {
         $this->console = $oConsole;
         return $this;
     }
 
     /**
-     * @return \Zend\Mvc\MvcEvent
+     * @return \Laminas\Mvc\MvcEvent
      * @throws \LogicException
      */
-    public function getMvcEvent() : \Zend\Mvc\MvcEvent
+    public function getMvcEvent() : \Laminas\Mvc\MvcEvent
     {
-        if ($this->mvcEvent instanceof \Zend\Mvc\MvcEvent) {
+        if ($this->mvcEvent instanceof \Laminas\Mvc\MvcEvent) {
             return $this->mvcEvent;
         }
         throw new \LogicException('Mvc event is undefined');
     }
 
     /**
-     * @param \Zend\Mvc\MvcEvent $oMvcEvent
+     * @param \Laminas\Mvc\MvcEvent $oMvcEvent
      * @return \AssetsBundle\Service\ToolsService
      */
-    public function setMvcEvent(\Zend\Mvc\MvcEvent $oMvcEvent) : \AssetsBundle\Service\ToolsService
+    public function setMvcEvent(\Laminas\Mvc\MvcEvent $oMvcEvent) : \AssetsBundle\Service\ToolsService
     {
         $this->mvcEvent = $oMvcEvent;
         return $this;

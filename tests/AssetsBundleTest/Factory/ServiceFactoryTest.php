@@ -62,7 +62,7 @@ class ServiceFactoryTest extends \PHPUnit\Framework\TestCase
     public function testCreateServiceWithClassnameRendererToStrategy()
     {
         $aConfiguration = $this->configuration;
-        $aConfiguration['assets_bundle']['rendererToStrategy']['zendviewrendererphprenderer'] = '\AssetsBundle\View\Strategy\ViewHelperStrategy';
+        $aConfiguration['assets_bundle']['rendererToStrategy']['laminasviewrendererphprenderer'] = '\AssetsBundle\View\Strategy\ViewHelperStrategy';
 
         $oServiceManager = \AssetsBundleTest\Bootstrap::getServiceManager();
         $oServiceManager->setAllowOverride(true);

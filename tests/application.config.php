@@ -1,8 +1,8 @@
 <?php
 return array(
     'modules' => array(
-        'Zend\Router',
-        'Zend\Mvc\Console',
+        'Laminas\Router',
+        'Laminas\Mvc\Console',
         'AssetsBundle',
     ),
     'module_listener_options' => array(

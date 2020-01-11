@@ -12,7 +12,7 @@ class ModuleTest extends \PHPUnit\Framework\TestCase
     protected $requestTimeFloat;
 
     /**
-     * @var \Zend\Mvc\MvcEvent
+     * @var \Laminas\Mvc\MvcEvent
      */
     protected $event;
 
@@ -21,17 +21,17 @@ class ModuleTest extends \PHPUnit\Framework\TestCase
         $this->requestTimeFloat = $_SERVER['REQUEST_TIME_FLOAT'];
         $this->module = new \AssetsBundle\Module();
         $aConfiguration = \AssetsBundleTest\Bootstrap::getServiceManager()->get('Config');
-        $this->event = new \Zend\Mvc\MvcEvent();
+        $this->event = new \Laminas\Mvc\MvcEvent();
         $this->event
-        ->setViewModel(new \Zend\View\Model\ViewModel())
+        ->setViewModel(new \Laminas\View\Model\ViewModel())
         ->setApplication(\AssetsBundleTest\Bootstrap::getServiceManager()->get('Application'))
-        ->setRouter(\Zend\Router\Http\TreeRouteStack::factory(isset($aConfiguration['router'])?$aConfiguration['router']:array()))
-        ->setRouteMatch(new \Zend\Router\RouteMatch(array('controller' => 'test-module','action' => 'test-module\index-controller')));
+        ->setRouter(\Laminas\Router\Http\TreeRouteStack::factory(isset($aConfiguration['router'])?$aConfiguration['router']:array()))
+        ->setRouteMatch(new \Laminas\Router\RouteMatch(array('controller' => 'test-module','action' => 'test-module\index-controller')));
     }
 
     public function testGetConsoleUsage()
     {
-        $this->assertTrue(is_array($this->module->getConsoleUsage(new \Zend\Console\Adapter\Virtual())));
+        $this->assertTrue(is_array($this->module->getConsoleUsage(new \Laminas\Console\Adapter\Virtual())));
     }
 
     public function testGetConfig()

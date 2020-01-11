@@ -16,7 +16,7 @@ if (false === (include $sComposerAutoloadPath)) {
 class Bootstrap {
 
     /**
-     * @var \Zend\ServiceManager\ServiceManager
+     * @var \Laminas\ServiceManager\ServiceManager
      */
     protected static $serviceManager;
 
@@ -42,7 +42,7 @@ class Bootstrap {
         
 
         // Use ModuleManager to load this module and it's dependencies
-        static::$config = \Zend\Stdlib\ArrayUtils::merge(
+        static::$config = \Laminas\Stdlib\ArrayUtils::merge(
             array(
                 'module_listener_options' => array(
                     'module_paths' => $aModulePaths
@@ -51,15 +51,15 @@ class Bootstrap {
             $aTestConfig
         );
 
-        static::$serviceManager = new \Zend\ServiceManager\ServiceManager();
-        $oConfig = new \Zend\Mvc\Service\ServiceManagerConfig();
+        static::$serviceManager = new \Laminas\ServiceManager\ServiceManager();
+        $oConfig = new \Laminas\Mvc\Service\ServiceManagerConfig();
         $oConfig->configureServiceManager(static::$serviceManager);
         static::$serviceManager->setService('ApplicationConfig', static::$config);
         static::$serviceManager->get('ModuleManager')->loadModules();
     }
 
     /**
-     * @return \Zend\ServiceManager\ServiceManager
+     * @return \Laminas\ServiceManager\ServiceManager
      */
     public static function getServiceManager() {
         return static::$serviceManager;
@@ -67,9 +67,9 @@ class Bootstrap {
 
     
     /**
-     * @return \Zend\ServiceManager\ServiceManager
+     * @return \Laminas\ServiceManager\ServiceManager
      */
-    public static function setServiceManager(\Zend\ServiceManager\ServiceManager $oServiceManager) {
+    public static function setServiceManager(\Laminas\ServiceManager\ServiceManager $oServiceManager) {
         static::$serviceManager = $oServiceManager;
     }
 

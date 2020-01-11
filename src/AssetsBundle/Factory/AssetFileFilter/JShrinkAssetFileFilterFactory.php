@@ -2,7 +2,7 @@
 
 namespace AssetsBundle\Factory\AssetFileFilter;
 
-class JShrinkAssetFileFilterFactory implements \Zend\ServiceManager\Factory\FactoryInterface
+class JShrinkAssetFileFilterFactory implements \Laminas\ServiceManager\Factory\FactoryInterface
 {
 
     /**

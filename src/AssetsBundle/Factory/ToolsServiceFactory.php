@@ -2,11 +2,11 @@
 
 namespace AssetsBundle\Factory;
 
-class ToolsServiceFactory implements \Zend\ServiceManager\Factory\FactoryInterface
+class ToolsServiceFactory implements \Laminas\ServiceManager\Factory\FactoryInterface
 {
 
     /**
-     * @see \Zend\ServiceManager\Factory\FactoryInterface::__invoke()
+     * @see \Laminas\ServiceManager\Factory\FactoryInterface::__invoke()
      * @param \Interop\Container\ContainerInterface $oServiceLocator
      * @param string $sRequestedName
      * @param array $aOptions
@@ -17,9 +17,9 @@ class ToolsServiceFactory implements \Zend\ServiceManager\Factory\FactoryInterfa
         $oToolsService = new \AssetsBundle\Service\ToolsService();
         $oToolsService
                 ->setAssetsBundleService($oServiceLocator->get('AssetsBundleService'))
-                ->setMvcEvent(($oMvcEvent = $oServiceLocator->get('Application')->getMvcEvent()) ? clone $oMvcEvent : new \Zend\Mvc\MvcEvent());
+                ->setMvcEvent(($oMvcEvent = $oServiceLocator->get('Application')->getMvcEvent()) ? clone $oMvcEvent : new \Laminas\Mvc\MvcEvent());
 
-        if ($oServiceLocator->has('console') && ($oConsole = $oServiceLocator->get('console')) instanceof \Zend\Console\Adapter\AdapterInterface) {
+        if ($oServiceLocator->has('console') && ($oConsole = $oServiceLocator->get('console')) instanceof \Laminas\Console\Adapter\AdapterInterface) {
             $oToolsService->setConsole($oConsole);
         }
         return $oToolsService;

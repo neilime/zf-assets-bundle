@@ -1,11 +1,11 @@
 <?php
 namespace AssetsBundle\Factory;
 
-class JsCustomRendererFactory implements \Zend\ServiceManager\Factory\FactoryInterface
+class JsCustomRendererFactory implements \Laminas\ServiceManager\Factory\FactoryInterface
 {
 
     /**
-     * @see \Zend\ServiceManager\Factory\FactoryInterface::__invoke()
+     * @see \Laminas\ServiceManager\Factory\FactoryInterface::__invoke()
      * @param \Interop\Container\ContainerInterface $oServiceLocator
      * @return \AssetsBundle\View\Renderer\JsCustomRenderer
      */

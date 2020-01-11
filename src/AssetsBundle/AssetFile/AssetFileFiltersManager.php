@@ -2,7 +2,7 @@
 
 namespace AssetsBundle\AssetFile;
 
-class AssetFileFiltersManager extends \Zend\ServiceManager\AbstractPluginManager
+class AssetFileFiltersManager extends \Laminas\ServiceManager\AbstractPluginManager
 {
 
     /**
