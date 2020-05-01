@@ -40,7 +40,7 @@
     "require": {
         "php": ">=7.1",
         "zendframework/zend-config": "^2.6 || ^3.0",
-        "zendframework/zend-console": "^2.6",
+        "zendframework/zend-console": "^2.8",
         "zendframework/zend-eventmanager": "^3.2.1",
         "zendframework/zend-http": "^2.5.4",
         "zendframework/zend-modulemanager": "^2.7.2",
