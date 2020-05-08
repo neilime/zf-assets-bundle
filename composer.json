@@ -42,7 +42,7 @@
         "zendframework/zend-config": "^2.6 || ^3.0",
         "zendframework/zend-console": "^2.8",
         "zendframework/zend-eventmanager": "^3.2.1",
-        "zendframework/zend-http": "^2.5.4",
+        "zendframework/zend-http": "^2.11.2",
         "zendframework/zend-modulemanager": "^2.8.4",
         "zendframework/zend-mvc": "^3.1.1",
         "zendframework/zend-mvc-console": "^1.2.0",
