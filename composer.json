@@ -50,7 +50,7 @@
         "zendframework/zend-view": "^2.11"
     },
     "require-dev": {
-        "leafo/scssphp": "^0.7.7 || ^0.8.0",
+        "leafo/scssphp": "^0.8.4",
         "mrclay/jsmin-php": "^2.4",
         "neilime/lessphp": "^0.5.0",
         "oyejorge/less.php": "v1.7.0.14",
