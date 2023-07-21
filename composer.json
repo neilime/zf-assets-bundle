@@ -54,7 +54,7 @@
         "mrclay/jsmin-php": "^2.4",
         "neilime/lessphp": "^0.5.0",
         "oyejorge/less.php": "v1.7.0.14",
-        "php-coveralls/php-coveralls": "^2.5",
+        "php-coveralls/php-coveralls": "^2.6",
         "phpunit/phpunit": "^7.5",
         "tedivm/jshrink": "^1.6",
         "tubalmartin/cssmin": "^4.1",
