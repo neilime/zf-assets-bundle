@@ -56,7 +56,7 @@
         "oyejorge/less.php": "v1.7.0.14",
         "php-coveralls/php-coveralls": "^2.8",
         "phpunit/phpunit": "^7.5",
-        "tedivm/jshrink": "^1.7",
+        "tedivm/jshrink": "^1.8",
         "tubalmartin/cssmin": "^4.1",
         "zendframework/zend-test": "^3.3"
     },
