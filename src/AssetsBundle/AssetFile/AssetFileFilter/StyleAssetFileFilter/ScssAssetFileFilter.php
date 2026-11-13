@@ -12,7 +12,7 @@ class ScssAssetFileFilter extends \AssetsBundle\AssetFile\AssetFileFilter\Abstra
 
     /**
      * Filter engine
-     * @var \Leafo\ScssPhp\Compiler
+     * @var \ScssPhp\ScssPhp\Compiler
      */
     protected $engine;
     
@@ -23,15 +23,15 @@ class ScssAssetFileFilter extends \AssetsBundle\AssetFile\AssetFileFilter\Abstra
      */
     protected function filterContent(string $sContent, string $sFilePath) : string
     {
-        return $this->getEngine()->compile($sContent);
+        return $this->getEngine()->compileFile($sFilePath)->getCss();
     }
     
     /**
-     * @return \Leafo\ScssPhp\Compiler
+     * @return \ScssPhp\ScssPhp\Compiler
      */
-    protected function getEngine() : \Leafo\ScssPhp\Compiler
+    protected function getEngine() : \ScssPhp\ScssPhp\Compiler
     {
-        $sClassName = '\\Leafo\\ScssPhp\\Compiler';
+        $sClassName = '\\ScssPhp\\ScssPhp\\Compiler';
         if (!class_exists($sClassName)) {
             throw new \LogicException('"'. $sClassName. '" class does not exist');
         }

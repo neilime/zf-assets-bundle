@@ -20,7 +20,7 @@ class ServiceFactoryTest extends \PHPUnit\Framework\TestCase
     /**
      * @see PHPUnit\Framework\TestCase::setUp()
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->requestTimeFloat = $_SERVER['REQUEST_TIME_FLOAT'];
         $this->serviceFactory = new \AssetsBundle\Factory\ServiceFactory();
@@ -91,7 +91,7 @@ class ServiceFactoryTest extends \PHPUnit\Framework\TestCase
         );
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         $_SERVER['REQUEST_TIME_FLOAT'] = $this->requestTimeFloat;
         $oServiceManager = \AssetsBundleTest\Bootstrap::getServiceManager();

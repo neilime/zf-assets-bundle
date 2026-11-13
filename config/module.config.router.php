@@ -9,7 +9,7 @@ return array(
             'may_terminate' => true,
             'child_routes' => array(
                 'definition' => array(
-                    'type' => 'Zend\Router\Http\Segment',
+                    'type' => 'Laminas\Router\Http\Segment',
                     'options' => array(
                         'route' => '/:controller/:js_action',
                         'contraints' => array('controller' => '[a-zA-Z][a-zA-Z0-9_-]*', 'js_action' => '[a-zA-Z][a-zA-Z0-9_-]*'),

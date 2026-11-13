@@ -3,7 +3,7 @@ declare(strict_types = 1);
 
 namespace AssetsBundle\Service;
 
-class ServiceOptions extends \Zend\Stdlib\AbstractOptions
+class ServiceOptions extends \Laminas\Stdlib\AbstractOptions
 {
     const NO_MODULE = 'no_module';
     const NO_ACTION = 'no_action';
@@ -89,7 +89,7 @@ class ServiceOptions extends \Zend\Stdlib\AbstractOptions
 
     /**
      * Assets renderer
-     * @var \Zend\View\Renderer\RendererInterface
+     * @var \Laminas\View\Renderer\RendererInterface
      */
     protected $renderer;
 
@@ -232,7 +232,7 @@ class ServiceOptions extends \Zend\Stdlib\AbstractOptions
      * @throws \InvalidArgumentException
      * @return \AssetsBundle\Service\ServiceOptions
      */
-    public function setAssetsPath(string $sAssetsPath = null) : \AssetsBundle\Service\ServiceOptions
+    public function setAssetsPath(?string $sAssetsPath = null) : \AssetsBundle\Service\ServiceOptions
     {
         if (is_null($sAssetsPath)) {
             $this->assetsPath = null;
@@ -504,10 +504,10 @@ class ServiceOptions extends \Zend\Stdlib\AbstractOptions
     }
 
     /**
-     * @param \Zend\View\Renderer\RendererInterface $oRenderer
+     * @param \Laminas\View\Renderer\RendererInterface $oRenderer
      * @return \AssetsBundle\Service\ServiceOptions
      */
-    public function setRenderer(\Zend\View\Renderer\RendererInterface $oRenderer) : \AssetsBundle\Service\ServiceOptions
+    public function setRenderer(\Laminas\View\Renderer\RendererInterface $oRenderer) : \AssetsBundle\Service\ServiceOptions
     {
         $this->renderer = $oRenderer;
         return $this;
@@ -515,11 +515,11 @@ class ServiceOptions extends \Zend\Stdlib\AbstractOptions
 
     /**
      * @throws \LogicException
-     * @return \Zend\View\Renderer\RendererInterface
+     * @return \Laminas\View\Renderer\RendererInterface
      */
-    public function getRenderer() : \Zend\View\Renderer\RendererInterface
+    public function getRenderer() : \Laminas\View\Renderer\RendererInterface
     {
-        if ($this->renderer instanceof \Zend\View\Renderer\RendererInterface) {
+        if ($this->renderer instanceof \Laminas\View\Renderer\RendererInterface) {
             return $this->renderer;
         }
         throw new \LogicException('"Renderer" option is undefined');
@@ -669,18 +669,18 @@ class ServiceOptions extends \Zend\Stdlib\AbstractOptions
 
     /**
      * @param string $sAssetFileType
-     * @return \Zend\View\Helper\HelperInterface
+     * @return \Laminas\View\Helper\HelperInterface
      * @throws \LogicException
      * @throws \InvalidArgumentException
      */
-    public function getViewHelperPluginForAssetFileType(string $sAssetFileType) : \Zend\View\Helper\HelperInterface
+    public function getViewHelperPluginForAssetFileType(string $sAssetFileType) : \Laminas\View\Helper\HelperInterface
     {
         if (\AssetsBundle\AssetFile\AssetFile::assetFileTypeExists($sAssetFileType)) {
             if (!is_array($this->view_helper_plugins)) {
                 throw new \LogicException('View helper plugins are undefined');
             }
 
-            if (isset($this->view_helper_plugins[$sAssetFileType]) && $this->view_helper_plugins[$sAssetFileType] instanceof \Zend\View\Helper\HelperInterface) {
+            if (isset($this->view_helper_plugins[$sAssetFileType]) && $this->view_helper_plugins[$sAssetFileType] instanceof \Laminas\View\Helper\HelperInterface) {
                 return $this->view_helper_plugins[$sAssetFileType];
             }
             throw new \InvalidArgumentException('View helper plugin for asset file type "' . $sAssetFileType . '" is undefined');
@@ -693,7 +693,7 @@ class ServiceOptions extends \Zend\Stdlib\AbstractOptions
      * @return string|null
      * @throws \InvalidArgumentException
      */
-    public function getRealPath(string $sPathToResolve, \AssetsBundle\AssetFile\AssetFile $oAssetFile = null) : ?string
+    public function getRealPath(string $sPathToResolve, ?\AssetsBundle\AssetFile\AssetFile $oAssetFile = null) : ?string
     {
         if (!is_string($sPathToResolve)) {
             throw new \InvalidArgumentException('Argument "$sPathToResolve" expects a string, "' . (is_object($sPathToResolve) ? get_class($sPathToResolve) : gettype($sPathToResolve)) . '" given');

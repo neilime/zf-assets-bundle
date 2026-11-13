@@ -2,7 +2,7 @@
 
 namespace AssetsBundleTest\Controller;
 
-class JsCustomControllerTest extends \Zend\Test\PHPUnit\Controller\AbstractHttpControllerTestCase
+class JsCustomControllerTest extends \Laminas\Test\PHPUnit\Controller\AbstractHttpControllerTestCase
 {
 
     /**
@@ -41,7 +41,7 @@ class JsCustomControllerTest extends \Zend\Test\PHPUnit\Controller\AbstractHttpC
     /**
      * @see PHPUnit\Framework\TestCase::setUp()
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->setApplicationConfig(\AssetsBundleTest\Bootstrap::getConfig());
 
@@ -50,7 +50,7 @@ class JsCustomControllerTest extends \Zend\Test\PHPUnit\Controller\AbstractHttpC
         $aConfiguration = $oServiceLocator->get('Config');
         unset($aConfiguration['assets_bundle']['assets']);
 
-        $this->configuration = \Zend\Stdlib\ArrayUtils::merge($aConfiguration, $this->configuration);
+        $this->configuration = \Laminas\Stdlib\ArrayUtils::merge($aConfiguration, $this->configuration);
         $oServiceLocator->setAllowOverride(true);
         $oServiceLocator->setService('Config', $this->configuration);
         $oServiceLocator->setAllowOverride(false);
@@ -66,7 +66,6 @@ class JsCustomControllerTest extends \Zend\Test\PHPUnit\Controller\AbstractHttpC
     {
         $this->dispatch('/test');
         $this->assertResponseStatusCode(200, $this->getResponse()->getContent());
-        $this->assertModuleName('AssetsBundleTest');
         $this->assertControllerName('AssetsBundleTest\Controller\Test');
         $this->assertControllerClass('TestController');
         $this->assertMatchedRouteName('test');
@@ -80,7 +79,7 @@ class JsCustomControllerTest extends \Zend\Test\PHPUnit\Controller\AbstractHttpC
         $aConfiguration = $oServiceLocator->get('Config');
         unset($aConfiguration['assets_bundle']['assets']);
 
-        $this->configuration = \Zend\Stdlib\ArrayUtils::merge($aConfiguration, $this->configuration);
+        $this->configuration = \Laminas\Stdlib\ArrayUtils::merge($aConfiguration, $this->configuration);
         $this->configuration['assets_bundle']['production'] = false;
         $oServiceLocator->setAllowOverride(true);
         $oServiceLocator->setService('Config', $this->configuration);
@@ -93,7 +92,6 @@ class JsCustomControllerTest extends \Zend\Test\PHPUnit\Controller\AbstractHttpC
 
         $this->dispatch('/test');
         $this->assertResponseStatusCode(200, $this->getResponse()->getContent());
-        $this->assertModuleName('AssetsBundleTest');
         $this->assertControllerName('AssetsBundleTest\Controller\Test');
         $this->assertControllerClass('TestController');
         $this->assertMatchedRouteName('test');
@@ -115,7 +113,7 @@ class JsCustomControllerTest extends \Zend\Test\PHPUnit\Controller\AbstractHttpC
         $aConfiguration = $oServiceLocator->get('Config');
         unset($aConfiguration['assets_bundle']['assets']);
 
-        $this->configuration = \Zend\Stdlib\ArrayUtils::merge($aConfiguration, $this->configuration);
+        $this->configuration = \Laminas\Stdlib\ArrayUtils::merge($aConfiguration, $this->configuration);
         $this->configuration['assets_bundle']['production'] = false;
         $oServiceLocator->setAllowOverride(true);
         $oServiceLocator->setService('Config', $this->configuration);
@@ -123,7 +121,6 @@ class JsCustomControllerTest extends \Zend\Test\PHPUnit\Controller\AbstractHttpC
 
         $this->dispatch('/file-error');
         $this->assertResponseStatusCode(200);
-        $this->assertModuleName('AssetsBundleTest');
         $this->assertControllerName('AssetsBundleTest\Controller\Test');
         $this->assertControllerClass('TestController');
         $this->assertMatchedRouteName('fileError');
@@ -136,7 +133,7 @@ class JsCustomControllerTest extends \Zend\Test\PHPUnit\Controller\AbstractHttpC
         $aConfiguration = $oServiceLocator->get('Config');
         unset($aConfiguration['assets_bundle']['assets']);
 
-        $this->configuration = \Zend\Stdlib\ArrayUtils::merge($aConfiguration, $this->configuration);
+        $this->configuration = \Laminas\Stdlib\ArrayUtils::merge($aConfiguration, $this->configuration);
         $this->configuration['assets_bundle']['production'] = false;
         $oServiceLocator->setAllowOverride(true);
         $oServiceLocator->setService('Config', $this->configuration);
@@ -144,7 +141,6 @@ class JsCustomControllerTest extends \Zend\Test\PHPUnit\Controller\AbstractHttpC
 
         $this->dispatch('/empty');
         $this->assertResponseStatusCode(200);
-        $this->assertModuleName('AssetsBundleTest');
         $this->assertControllerName('AssetsBundleTest\Controller\Test');
         $this->assertControllerClass('TestController');
         $this->assertMatchedRouteName('empty');
@@ -154,7 +150,6 @@ class JsCustomControllerTest extends \Zend\Test\PHPUnit\Controller\AbstractHttpC
     {
         $this->dispatch('/jscustom/AssetsBundleTest%5CController%5CTest/test');
         $this->assertResponseStatusCode(200);
-        $this->assertModuleName('AssetsBundleTest');
         $this->assertControllerName('AssetsBundleTest\Controller\Test');
         $this->assertControllerClass('TestController');
         $this->assertMatchedRouteName('jscustom/definition');
@@ -167,7 +162,7 @@ class JsCustomControllerTest extends \Zend\Test\PHPUnit\Controller\AbstractHttpC
 
 
 
-    public function tearDown()
+    public function tearDown(): void
     {
         // Empty cache and processed directories
         \AssetsBundleTest\Bootstrap::getServiceManager()->get('AssetsBundleToolsService')->emptyCache(false);

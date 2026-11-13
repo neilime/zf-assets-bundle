@@ -42,17 +42,14 @@ class PngAssetFileFilter extends \AssetsBundle\AssetFile\AssetFileFilter\ImageAs
     }
 
     /**
-     * @param resource $rImage
+     * @param \GdImage $rImage
      * @return string
      * @throws \InvalidArgumentException
      */
-    public function optimizeImage($rImage) : string
+    public function optimizeImage(\GdImage $rImage) : string
     {
-        if (is_resource($rImage)) {
-            ob_start();
-            imagepng($rImage, null, $this->getImageQuality());
-            return ob_get_clean();
-        }
-        throw new \InvalidArgumentException('Image expects a ressource, "' . gettype($rImage) . '" given');
+        ob_start();
+        imagepng($rImage, null, $this->getImageQuality());
+        return ob_get_clean();
     }
 }

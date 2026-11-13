@@ -21,17 +21,14 @@ class GifAssetFileFilter extends \AssetsBundle\AssetFile\AssetFileFilter\ImageAs
     }
 
     /**
-     * @param resource $rImage
+     * @param \GdImage $rImage
      * @return string
      * @throws \InvalidArgumentException
      */
-    public function optimizeImage($rImage) : string
+    public function optimizeImage(\GdImage $rImage) : string
     {
-        if (is_resource($rImage)) {
-            ob_start();
-            imagegif($rImage);
-            return ob_get_clean();
-        }
-        throw new \InvalidArgumentException('Image expects a resource, "' . gettype($rImage) . '" given');
+        ob_start();
+        imagegif($rImage);
+        return ob_get_clean();
     }
 }

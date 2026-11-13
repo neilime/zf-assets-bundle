@@ -2,7 +2,7 @@
 
 namespace AssetsBundle\AssetFile\AssetFileFilter;
 
-abstract class AbstractAssetFileFilter extends \Zend\Stdlib\AbstractOptions implements \AssetsBundle\AssetFile\AssetFileFilter\AssetFileFilterInterface
+abstract class AbstractAssetFileFilter extends \Laminas\Stdlib\AbstractOptions implements \AssetsBundle\AssetFile\AssetFileFilter\AssetFileFilterInterface
 {
     
     /**
@@ -43,15 +43,19 @@ abstract class AbstractAssetFileFilter extends \Zend\Stdlib\AbstractOptions impl
         $iMaxExecutionTime = ini_get('max_execution_time');
         set_time_limit(0);
         try {
-            \Zend\Stdlib\ErrorHandler::start(\E_ALL);
-            $sFilteredContent = $this->filterContent($sContent, $oAssetFile->getAssetFilePath());
-            \Zend\Stdlib\ErrorHandler::stop(true);
+            \Laminas\Stdlib\ErrorHandler::start(\E_ALL);
+            try {
+                $sFilteredContent = $this->filterContent($sContent, $oAssetFile->getAssetFilePath());
+            } finally {
+                \Laminas\Stdlib\ErrorHandler::stop(true);
+            }
         } catch (\Throwable $oException) {
             throw new \RuntimeException('An error occured while running filter "'.$this->getAssetFileFilterName().'" on file\'s content "'.$oAssetFile->getAssetFilePath().'"', $oException->getCode(), $oException);
+        } finally {
+            set_time_limit((int) $iMaxExecutionTime);
         }
         $sFilteredContent = trim($sFilteredContent);
         $this->cacheFilteredAssetFileContent($oAssetFile, $sFilteredContent);
-        set_time_limit($iMaxExecutionTime);
         return $sFilteredContent;
     }
     
@@ -183,14 +187,14 @@ abstract class AbstractAssetFileFilter extends \Zend\Stdlib\AbstractOptions impl
             $sCachedFilteredContentFilePath = $this->getCachedFilteredContentFilePath($oAssetFile);
             $bFileExists = file_exists($sCachedFilteredContentFilePath);
 
-            \Zend\Stdlib\ErrorHandler::start(\E_ALL);
+            \Laminas\Stdlib\ErrorHandler::start(\E_ALL);
             file_put_contents($sCachedFilteredContentFilePath, $sFilteredContent);
-            \Zend\Stdlib\ErrorHandler::stop(true);
+            \Laminas\Stdlib\ErrorHandler::stop(true);
 
             if (!$bFileExists) {
-                \Zend\Stdlib\ErrorHandler::start(\E_ALL);
+                \Laminas\Stdlib\ErrorHandler::start(\E_ALL);
                 chmod($sCachedFilteredContentFilePath, $this->getOptions()->getFilesPermissions());
-                \Zend\Stdlib\ErrorHandler::stop(true);
+                \Laminas\Stdlib\ErrorHandler::stop(true);
             }
             return $this;
         }
@@ -202,16 +206,16 @@ abstract class AbstractAssetFileFilter extends \Zend\Stdlib\AbstractOptions impl
      */
     public function getAssetFileFilterProcessedDirPath() : string
     {
-        if (!is_dir($this->assetFileFilterProcessedDirPath)) {
+        if (!$this->assetFileFilterProcessedDirPath || !is_dir($this->assetFileFilterProcessedDirPath)) {
             $this->assetFileFilterProcessedDirPath = $this->getOptions()->getProcessedDirPath() . DIRECTORY_SEPARATOR . strtolower(str_replace(
                                     array('/', '<', '>', '?', '*', '"', '|'),
                 '_',
                 $this->getAssetFileFilterName()
             ));
-            if (!is_dir($this->assetFileFilterProcessedDirPath)) {
-                \Zend\Stdlib\ErrorHandler::start(\E_ALL);
+            if (!$this->assetFileFilterProcessedDirPath || !is_dir($this->assetFileFilterProcessedDirPath)) {
+                \Laminas\Stdlib\ErrorHandler::start(\E_ALL);
                 mkdir($this->assetFileFilterProcessedDirPath, $this->getOptions()->getDirectoriesPermissions());
-                \Zend\Stdlib\ErrorHandler::stop(true);
+                \Laminas\Stdlib\ErrorHandler::stop(true);
             }
         }
         return $this->assetFileFilterProcessedDirPath;

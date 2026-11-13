@@ -13,18 +13,16 @@ class ServiceTest extends \PHPUnit\Framework\TestCase
     /**
      * @see PHPUnit\Framework\TestCase::setUp()
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         // Empty cache and processed directories
         \AssetsBundleTest\Bootstrap::getServiceManager()->get('AssetsBundleToolsService')->emptyCache(false);
         $this->service = new \AssetsBundle\Service\Service();
     }
 
-    /**
-     * @expectedException \LogicException
-     */
     public function testGetOptionsUndefined()
     {
+        $this->expectException(\LogicException::class);
        $this->service->getOptions();
     }
 
@@ -51,7 +49,7 @@ class ServiceTest extends \PHPUnit\Framework\TestCase
         $this->service->setOptions(new \AssetsBundle\Service\ServiceOptions());
 
         // Set fake route match
-        $oRouteMatch = new \Zend\Router\RouteMatch(array('controller' => 'test-module\index-controller', 'action' => 'index'));
+        $oRouteMatch = new \Laminas\Router\RouteMatch(array('controller' => 'test-module\index-controller', 'action' => 'index'));
 
         // Module
         $this->assertInstanceOf('AssetsBundle\Service\ServiceOptions', $this->service->getOptions()->setModuleName(current(explode('\\', $oRouteMatch->getParam('controller')))));
@@ -66,7 +64,7 @@ class ServiceTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('index', $this->service->getOptions()->getActionName());
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         // Empty cache and processed directories
         \AssetsBundleTest\Bootstrap::getServiceManager()->get('AssetsBundleToolsService')->emptyCache(false);

@@ -1,8 +1,8 @@
 <?php
 
-namespace AssetsBundleTest\Controller;
+namespace AssetsBundleTest\Command;
 
-class ToolsControllerTest extends \Zend\Test\PHPUnit\Controller\AbstractConsoleControllerTestCase
+class ToolsCommandTest extends \PHPUnit\Framework\TestCase
 {
 
     /**
@@ -11,6 +11,13 @@ class ToolsControllerTest extends \Zend\Test\PHPUnit\Controller\AbstractConsoleC
     protected $originalConfiguration;
 
     protected $requestTimeFloat;
+
+    private \Laminas\Mvc\Application $application;
+
+    private function getApplicationServiceLocator()
+    {
+        return $this->application->getServiceManager();
+    }
 
     /**
      * @var array
@@ -59,12 +66,11 @@ class ToolsControllerTest extends \Zend\Test\PHPUnit\Controller\AbstractConsoleC
     /**
      * @see PHPUnit\Framework\TestCase::setUp()
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->requestTimeFloat = $_SERVER['REQUEST_TIME_FLOAT'];
-        $this->setApplicationConfig(\AssetsBundleTest\Bootstrap::getConfig());
-        $this->setUseConsoleRequest(true);
         parent::setUp();
+        $this->application = \Laminas\Mvc\Application::init(\AssetsBundleTest\Bootstrap::getConfig());
 
         // Retrieve service locator
         $oServiceLocator = $this->getApplicationServiceLocator();
@@ -75,13 +81,13 @@ class ToolsControllerTest extends \Zend\Test\PHPUnit\Controller\AbstractConsoleC
 
         // Override configuration
         unset($aConfiguration['assets_bundle']['assets']);
-        $oServiceLocator->setService('Config', $this->configuration = \Zend\Stdlib\ArrayUtils::merge($aConfiguration, $this->configuration));
+        $oServiceLocator->setService('Config', $this->configuration = \Laminas\Stdlib\ArrayUtils::merge($aConfiguration, $this->configuration));
 
         // Rebuild AssetsBundle service options
         $oServiceLocator->setService('AssetsBundleServiceOptions', $oServiceLocator->build('AssetsBundleServiceOptions'));
 
         // Retrieve event manager
-        $oEventManager = $this->getApplication()->getEventManager();
+        $oEventManager = $this->application->getEventManager();
 
         // Remove AssetsBundle service events
         $oServiceLocator->get('AssetsBundleService')->detach($oEventManager);
@@ -90,7 +96,7 @@ class ToolsControllerTest extends \Zend\Test\PHPUnit\Controller\AbstractConsoleC
         $oServiceLocator->setService('AssetsBundleService', $oServiceLocator->build('AssetsBundleService')->attach($oEventManager));
 
         // Empty cache and processed directories
-        \AssetsBundleTest\Bootstrap::getServiceManager()->get('AssetsBundleToolsService')->emptyCache(false);
+        $this->getApplicationServiceLocator()->get('AssetsBundleToolsService')->emptyCache(false);
     }
 
     public function testRenderAssetsInProductionAction()
@@ -98,12 +104,11 @@ class ToolsControllerTest extends \Zend\Test\PHPUnit\Controller\AbstractConsoleC
         // Retrieve service locator
         $oServiceLocator = $this->getApplicationServiceLocator();
 
-        $this->dispatch('render');
-        $this->assertResponseStatusCode(0);
-        $this->assertModuleName('AssetsBundle');
-        $this->assertControllerName('AssetsBundle\Controller\ToolsController');
-        $this->assertControllerClass('ToolsController');
-        $this->assertMatchedRouteName('render-assets');
+        $command = new \Symfony\Component\Console\Tester\CommandTester(
+            $this->getApplicationServiceLocator()->get(\AssetsBundle\Command\RenderAssetsCommand::class)
+        );
+        $command->execute([]);
+        $command->assertCommandIsSuccessful();
 
         // Retrieve AssetsBundle service
         $oAssetsBundleService = $oServiceLocator->get('AssetsBundleService');
@@ -162,22 +167,20 @@ class ToolsControllerTest extends \Zend\Test\PHPUnit\Controller\AbstractConsoleC
         $oOptions = $oAssetsBundleService->getOptions();
         $oOptions->setProduction(false);
 
-        $this->dispatch('render');
-        $this->assertResponseStatusCode(0);
-        $this->assertModuleName('AssetsBundle');
-        $this->assertControllerName('AssetsBundle\Controller\ToolsController');
-        $this->assertControllerClass('ToolsController');
-        $this->assertMatchedRouteName('render-assets');
+        $command = new \Symfony\Component\Console\Tester\CommandTester(
+            $this->getApplicationServiceLocator()->get(\AssetsBundle\Command\RenderAssetsCommand::class)
+        );
+        $command->execute([]);
+        $command->assertCommandIsSuccessful();
     }
 
     public function testEmptyCache()
     {
-        $this->dispatch('empty');
-        $this->assertResponseStatusCode(0);
-        $this->assertModuleName('AssetsBundle');
-        $this->assertControllerName('Assetsbundle\Controller\ToolsController');
-        $this->assertControllerClass('ToolsController');
-        $this->assertMatchedRouteName('empty-cache');
+        $command = new \Symfony\Component\Console\Tester\CommandTester(
+            $this->getApplicationServiceLocator()->get(\AssetsBundle\Command\EmptyCacheCommand::class)
+        );
+        $command->execute([]);
+        $command->assertCommandIsSuccessful();
 
         // Test directories have only .gitignore file
         $sFilesDirectoryPath = realpath(__DIR__ . '/../../_files/');
@@ -187,7 +190,7 @@ class ToolsControllerTest extends \Zend\Test\PHPUnit\Controller\AbstractConsoleC
         }
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         $_SERVER['REQUEST_TIME_FLOAT'] = $this->requestTimeFloat;
         $oServiceLocator = $this->getApplicationServiceLocator();
@@ -196,6 +199,6 @@ class ToolsControllerTest extends \Zend\Test\PHPUnit\Controller\AbstractConsoleC
         $oServiceLocator->setAllowOverride(false);
 
         // Empty cache and processed directories
-        \AssetsBundleTest\Bootstrap::getServiceManager()->get('AssetsBundleToolsService')->emptyCache(false);
+        $this->getApplicationServiceLocator()->get('AssetsBundleToolsService')->emptyCache(false);
     }
 }

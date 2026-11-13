@@ -12,7 +12,7 @@ class JsCustomRendererTest extends \PHPUnit\Framework\TestCase {
     /**
      * @see PHPUnit\Framework\TestCase::setUp()
      */
-    protected function setUp() {
+    protected function setUp(): void {
         $this->jsCustomRenderer = new \AssetsBundle\View\Renderer\JsCustomRenderer();
     }
 
@@ -24,10 +24,8 @@ class JsCustomRendererTest extends \PHPUnit\Framework\TestCase {
         $this->assertEquals($this->jsCustomRenderer, $this->jsCustomRenderer->setResolver(\AssetsBundleTest\Bootstrap::getServiceManager()->get('ViewResolver')));
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testRenderWithWrongViewModel() {
+        $this->expectException(\InvalidArgumentException::class);
         $this->jsCustomRenderer->render('wrong');
     }
 

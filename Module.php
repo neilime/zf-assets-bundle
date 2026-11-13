@@ -3,14 +3,13 @@
 namespace AssetsBundle;
 
 class Module implements
-\Zend\ModuleManager\Feature\ConfigProviderInterface,
-    \Zend\ModuleManager\Feature\ConsoleUsageProviderInterface
+\Laminas\ModuleManager\Feature\ConfigProviderInterface
 {
 
     /**
-     * @param \Zend\EventManager\EventInterface $oEvent
+     * @param \Laminas\EventManager\EventInterface $oEvent
      */
-    public function onBootstrap(\Zend\EventManager\EventInterface $oEvent)
+    public function onBootstrap(\Laminas\EventManager\EventInterface $oEvent)
     {
         $oApplication = $oEvent->getApplication();
 
@@ -18,20 +17,6 @@ class Module implements
         $oApplication->getServiceManager()->get('AssetsBundleService')->attach($oApplication->getEventManager());
     }
 
-    /**
-     * @see \Zend\ModuleManager\Feature\ConsoleUsageProviderInterface::getConsoleUsage()
-     * @param \Zend\Console\Adapter\AdapterInterface $oConsole
-     * @return array
-     */
-    public function getConsoleUsage(\Zend\Console\Adapter\AdapterInterface $oConsole)
-    {
-        return array(
-            'Rendering assets:',
-            'render' => 'render all assets',
-            'Empty cache:',
-            'empty' => 'empty cache directory'
-        );
-    }
 
     /**
      * @return array
