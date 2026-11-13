@@ -14,33 +14,27 @@ class ServiceOptionsTest extends \PHPUnit\Framework\TestCase
     /**
      * @see PHPUnit\Framework\TestCase::setUp()
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->requestTimeFloat = $_SERVER['REQUEST_TIME_FLOAT'];
         $this->serviceOptions = new \AssetsBundle\Service\ServiceOptions();
     }
 
-    /**
-     * @expectedException \LogicException
-     */
     public function testIsProductionUndefined()
     {
+        $this->expectException(\LogicException::class);
         $this->serviceOptions->isProduction();
     }
 
-    /**
-     * @expectedException \TypeError
-     */
     public function testSetProductionWithWrongValue()
     {
+        $this->expectException(\TypeError::class);
         $this->serviceOptions->setProduction(array());
     }
 
-    /**
-     * @expectedException \LogicException
-     */
     public function testGetLastModifiedTimeUndefined()
     {
+        $this->expectException(\LogicException::class);
         // Override lastModifiedTime
         $oReflectionClass = new \ReflectionClass('\AssetsBundle\Service\ServiceOptions');
         $oLastModifiedTimeProp = $oReflectionClass->getProperty('lastModifiedTime');
@@ -49,43 +43,33 @@ class ServiceOptionsTest extends \PHPUnit\Framework\TestCase
         $this->serviceOptions->getLastModifiedTime();
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testSetLastModifiedTimeWithWrongValue()
     {
+        $this->expectException(\InvalidArgumentException::class);
         $this->serviceOptions->setLastModifiedTime(array());
     }
 
-    /**
-     * @expectedException \LogicException
-     */
     public function testGetCachePathUndefined()
     {
+        $this->expectException(\LogicException::class);
         $this->serviceOptions->getCachePath();
     }
 
-    /**
-     * @expectedException \TypeError
-     */
     public function testSetCachePathWithWrongValue()
     {
+        $this->expectException(\TypeError::class);
         $this->serviceOptions->setCachePath(array());
     }
 
-    /**
-     * @expectedException \LogicException
-     */
     public function testGetAssetsPathUndefined()
     {
+        $this->expectException(\LogicException::class);
         $this->serviceOptions->getAssetsPath();
     }
 
-    /**
-     * @expectedException \LogicException
-     */
     public function testGetBaseUrlUndefined()
     {
+        $this->expectException(\LogicException::class);
         //Override baseUrl
         $oReflectionClass = new \ReflectionClass('\AssetsBundle\Service\ServiceOptions');
         $oBaseUrlProp = $oReflectionClass->getProperty('baseUrl');
@@ -94,67 +78,51 @@ class ServiceOptionsTest extends \PHPUnit\Framework\TestCase
         $this->serviceOptions->getBaseUrl();
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testSetBaseUrlWithWrongValue()
     {
+        $this->expectException(\InvalidArgumentException::class);
         $this->serviceOptions->setBaseUrl(array());
     }
 
-    /**
-     * @expectedException \LogicException
-     */
     public function testGetCacheUrlUndefined()
     {
+        $this->expectException(\LogicException::class);
         $this->serviceOptions->getCacheUrl();
     }
 
-    /**
-     * @expectedException \TypeError
-     */
     public function testSetCacheUrlWithWrongValue()
     {
+        $this->expectException(\TypeError::class);
         $this->serviceOptions->setCacheUrl(array());
     }
 
-    /**
-     * @expectedException \LogicException
-     */
     public function testGetMediaExtUndefined()
     {
+        $this->expectException(\LogicException::class);
         $this->serviceOptions->getMediaExt();
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testSetMediaExtWithWrongValue()
     {
+        $this->expectException(\InvalidArgumentException::class);
         $this->serviceOptions->setMediaExt(array(array('wrong')));
     }
 
-    /**
-     * @expectedException \LogicException
-     */
     public function testAllowsRecursiveSearchUndefined()
     {
+        $this->expectException(\LogicException::class);
         $this->serviceOptions->allowsRecursiveSearch();
     }
 
-    /**
-     * @expectedException \TypeError
-     */
     public function testSetRecursiveSearchWithWrongValue()
     {
+        $this->expectException(\TypeError::class);
         $this->serviceOptions->setRecursiveSearch(array('wrong'));
     }
 
-    /**
-     * @expectedException \LogicException
-     */
     public function testGetAssetsUndefined()
     {
+        $this->expectException(\LogicException::class);
         // Override assets
         $oReflectionClass = new \ReflectionClass('\AssetsBundle\Service\ServiceOptions');
         $oAssetsProp = $oReflectionClass->getProperty('assets');
@@ -163,19 +131,15 @@ class ServiceOptionsTest extends \PHPUnit\Framework\TestCase
         $this->serviceOptions->getAssets();
     }
 
-    /**
-     * @expectedException \LogicException
-     */
     public function testGetRendererUndefined()
     {
+        $this->expectException(\LogicException::class);
         $this->serviceOptions->getRenderer();
     }
 
-    /**
-     * @expectedException \LogicException
-     */
     public function testGetModuleNameUndefined()
     {
+        $this->expectException(\LogicException::class);
         // Override moduleName
         $oReflectionClass = new \ReflectionClass('\AssetsBundle\Service\ServiceOptions');
         $oModuleNameProp = $oReflectionClass->getProperty('moduleName');
@@ -184,11 +148,9 @@ class ServiceOptionsTest extends \PHPUnit\Framework\TestCase
         $this->serviceOptions->getModuleName();
     }
 
-    /**
-     * @expectedException \LogicException
-     */
     public function testGetControllerNameUndefined()
     {
+        $this->expectException(\LogicException::class);
         // Override controllerName
         $oReflectionClass = new \ReflectionClass('\AssetsBundle\Service\ServiceOptions');
         $oControllerNameProp = $oReflectionClass->getProperty('controllerName');
@@ -197,11 +159,9 @@ class ServiceOptionsTest extends \PHPUnit\Framework\TestCase
         $this->serviceOptions->getControllerName();
     }
 
-    /**
-     * @expectedException \LogicException
-     */
     public function testGetActionNameUndefined()
     {
+        $this->expectException(\LogicException::class);
         // Override actionName
         $oReflectionClass = new \ReflectionClass('\AssetsBundle\Service\ServiceOptions');
         $oActionNameProp = $oReflectionClass->getProperty('actionName');
@@ -210,7 +170,7 @@ class ServiceOptionsTest extends \PHPUnit\Framework\TestCase
         $this->serviceOptions->getActionName();
     }
     
-    public function tearDown()
+    public function tearDown(): void
     {
         $_SERVER['REQUEST_TIME_FLOAT'] = $this->requestTimeFloat;
     }

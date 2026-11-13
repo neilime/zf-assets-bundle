@@ -3,8 +3,9 @@
 //Service manager module config
 return [
     'factories' => [
+        \AssetsBundle\Command\RenderAssetsCommand::class => \AssetsBundle\Factory\CommandFactory::class,
+        \AssetsBundle\Command\EmptyCacheCommand::class => \AssetsBundle\Factory\CommandFactory::class,
         'ScssAssetFileFilter' => \AssetsBundle\Factory\AssetFileFilter\ScssAssetFileFilterFactory::class,
-        'LesscAssetFileFilter' => \AssetsBundle\Factory\AssetFileFilter\LesscAssetFileFilterFactory::class,
         'LessphpAssetFileFilter' => \AssetsBundle\Factory\AssetFileFilter\LessphpAssetFileFilterFactory::class,
         'CssAssetFileFilter' => \AssetsBundle\Factory\AssetFileFilter\CssAssetFileFilterFactory::class,
         'JsMinAssetFileFilter' => \AssetsBundle\Factory\AssetFileFilter\JsMinAssetFileFilterFactory::class,

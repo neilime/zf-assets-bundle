@@ -2,18 +2,18 @@
 
 namespace AssetsBundle\Factory;
 
-class ServiceFactory implements \Zend\ServiceManager\Factory\FactoryInterface
+class ServiceFactory implements \Laminas\ServiceManager\Factory\FactoryInterface
 {
 
     /**
-     * @see \Zend\ServiceManager\Factory\FactoryInterface::__invoke()
-     * @param \Interop\Container\ContainerInterface $oServiceLocator
+     * @see \Laminas\ServiceManager\Factory\FactoryInterface::__invoke()
+     * @param \Psr\Container\ContainerInterface $oServiceLocator
      * @param string $sRequestedName
      * @param array $aOptions
      * @throws \UnexpectedValueException
      * @return \AssetsBundle\Service\Service
      */
-    public function __invoke(\Interop\Container\ContainerInterface $oServiceLocator, $sRequestedName, array $aOptions = null)
+    public function __invoke(\Psr\Container\ContainerInterface $oServiceLocator, $sRequestedName, ?array $aOptions = null)
     {
         $aConfiguration = $oServiceLocator->get('Config');
         if (!isset($aConfiguration['assets_bundle'])) {
@@ -27,7 +27,7 @@ class ServiceFactory implements \Zend\ServiceManager\Factory\FactoryInterface
         if (isset($aConfiguration['assets_bundle']['filters'])) {
             $aFilters = $aConfiguration['assets_bundle']['filters'];
             if ($aFilters instanceof \Traversable) {
-                $aFilters = \Zend\Stdlib\ArrayUtils::iteratorToArray($aFilters);
+                $aFilters = \Laminas\Stdlib\ArrayUtils::iteratorToArray($aFilters);
             } elseif (!is_array($aFilters)) {
                 throw new \InvalidArgumentException('Assets bundle "filters" option expects an array or Traversable object; received "' . (is_object($aFilters) ? get_class($aFilters) : gettype($aFilters)) . '"');
             }
@@ -54,7 +54,7 @@ class ServiceFactory implements \Zend\ServiceManager\Factory\FactoryInterface
                     $oFilter = array();
                 } else {
                     if ($oFilter instanceof \Traversable) {
-                        $oFilter = \Zend\Stdlib\ArrayUtils::iteratorToArray($oFilter);
+                        $oFilter = \Laminas\Stdlib\ArrayUtils::iteratorToArray($oFilter);
                     }
                     if (is_array($oFilter)) {
                         if (isset($oFilter['filter_name'])) {

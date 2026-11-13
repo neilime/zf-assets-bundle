@@ -2,7 +2,7 @@
 
 namespace AssetsBundle\Mvc\Controller;
 
-abstract class AbstractActionController extends \Zend\Mvc\Controller\AbstractActionController {
+abstract class AbstractActionController extends \Laminas\Mvc\Controller\AbstractActionController {
 
     /**
      * @var string
@@ -10,11 +10,11 @@ abstract class AbstractActionController extends \Zend\Mvc\Controller\AbstractAct
     const JS_CUSTOM_ACTION = 'jscustom';
 
     /**
-     * @param \Zend\Mvc\MvcEvent $oEvent
+     * @param \Laminas\Mvc\MvcEvent $oEvent
      * @return mixed
      * @throws \LogicException
      */
-    public function onDispatch(\Zend\Mvc\MvcEvent $oEvent) {
+    public function onDispatch(\Laminas\Mvc\MvcEvent $oEvent) {
         $oReturn = parent::onDispatch($oEvent);
         if ($this->params('action') === self::JS_CUSTOM_ACTION) {
             if (!is_array($oReturn)) {

@@ -28,7 +28,7 @@ class LessphpAssetFileFilter extends \AssetsBundle\AssetFile\AssetFileFilter\Abs
             $_SERVER['DOCUMENT_ROOT'] = getcwd();
             $bSetDocumentRoot = true;
         }
-        $sFilteredContent = $this->getEngine()->parseFile($sFilePath)->getCss();
+        $sFilteredContent = $this->getEngine()->parseFile($sFilePath, dirname($sFilePath))->getCss();
 
         if($bSetDocumentRoot){
             unset($_SERVER['DOCUMENT_ROOT']);
@@ -52,8 +52,8 @@ class LessphpAssetFileFilter extends \AssetsBundle\AssetFile\AssetFileFilter\Abs
             return $this->engine;
         }
         
-        $oEngine = new $sClassName();       
-        $oEngine->SetImportDirs(array(getcwd() => getcwd()));
+        $oEngine = new $sClassName();
+        $oEngine->SetImportDirs([DIRECTORY_SEPARATOR => DIRECTORY_SEPARATOR]);
         return $this->engine = $oEngine;
     }
 }

@@ -2,21 +2,21 @@
 
 namespace AssetsBundle\View\Strategy;
 
-class JsCustomStrategy implements \Zend\EventManager\ListenerAggregateInterface
+class JsCustomStrategy implements \Laminas\EventManager\ListenerAggregateInterface
 {
 
     /**
-     * @var \Zend\ServiceManager\ServiceLocatorInterface
+     * @var \Laminas\ServiceManager\ServiceLocatorInterface
      */
     protected $serviceLocator;
 
     /**
-     * @var \Zend\Router\RouteInterface
+     * @var \Laminas\Router\RouteInterface
      */
     protected $router;
 
     /**
-     * @var \Zend\Stdlib\CallbackHandler[]
+     * @var \Laminas\Stdlib\CallbackHandler[]
      */
     protected $listeners = array();
 
@@ -47,15 +47,15 @@ class JsCustomStrategy implements \Zend\EventManager\ListenerAggregateInterface
         throw new \LogicException('Renderer is undefined');
     }
 
-    public function setRouter(\Zend\Router\RouteInterface $oRouter) : \AssetsBundle\View\Strategy\JsCustomStrategy
+    public function setRouter(\Laminas\Router\RouteInterface $oRouter) : \AssetsBundle\View\Strategy\JsCustomStrategy
     {
         $this->router = $oRouter;
         return $this;
     }
 
-    public function getRouter() : \Zend\Router\RouteInterface
+    public function getRouter() : \Laminas\Router\RouteInterface
     {
-        if ($this->router instanceof \Zend\Router\RouteInterface) {
+        if ($this->router instanceof \Laminas\Router\RouteInterface) {
             return $this->router;
         }
         throw new \LogicException('Router is undefined');
@@ -63,22 +63,22 @@ class JsCustomStrategy implements \Zend\EventManager\ListenerAggregateInterface
     
     /**
      * Attach the aggregate to the specified event manager
-     * @param \Zend\EventManager\EventManagerInterface $oEvents
+     * @param \Laminas\EventManager\EventManagerInterface $oEvents
      * @param int $iPriority
      * @return void
      */
-    public function attach(\Zend\EventManager\EventManagerInterface $oEvents, $iPriority = 1)
+    public function attach(\Laminas\EventManager\EventManagerInterface $oEvents, $iPriority = 1)
     {
-        $this->listeners[] = $oEvents->attach(\Zend\View\ViewEvent::EVENT_RENDERER, array($this, 'selectRenderer'), $iPriority);
-        $this->listeners[] = $oEvents->attach(\Zend\View\ViewEvent::EVENT_RESPONSE, array($this, 'injectResponse'), $iPriority);
+        $this->listeners[] = $oEvents->attach(\Laminas\View\ViewEvent::EVENT_RENDERER, array($this, 'selectRenderer'), $iPriority);
+        $this->listeners[] = $oEvents->attach(\Laminas\View\ViewEvent::EVENT_RESPONSE, array($this, 'injectResponse'), $iPriority);
     }
 
     /**
      * Detach aggregate listeners from the specified event manager
-     * @param \Zend\EventManager\EventManagerInterface $oEvents
+     * @param \Laminas\EventManager\EventManagerInterface $oEvents
      * @return void
      */
-    public function detach(\Zend\EventManager\EventManagerInterface $oEvents)
+    public function detach(\Laminas\EventManager\EventManagerInterface $oEvents)
     {
         foreach ($this->listeners as $iIndex => $oListener) {
             if ($oEvents->detach($oListener)) {
@@ -89,22 +89,22 @@ class JsCustomStrategy implements \Zend\EventManager\ListenerAggregateInterface
 
     /**
      * Check if JsCustomStrategy has to be used (MVC action = \AssetsBundle\Mvc\Controller\AbstractActionController::JS_CUSTOM_ACTION)
-     * @param \Zend\View\ViewEvent $oEvent
+     * @param \Laminas\View\ViewEvent $oEvent
      * @throws \LogicException
      * @return void|\AssetsBundle\View\Renderer\JsCustomRenderer
      */
-    public function selectRenderer(\Zend\View\ViewEvent $oEvent)
+    public function selectRenderer(\Laminas\View\ViewEvent $oEvent)
     {
         $oRouter = $this->getRouter();
         if (
             // Retrieve request
-            ($oRequest = $oEvent->getRequest()) instanceof \Zend\Http\Request
+            ($oRequest = $oEvent->getRequest()) instanceof \Laminas\Http\Request
             // Retrieve route match
-            && ($oRouteMatch = $oRouter->match($oRequest)) instanceof \Zend\Router\RouteMatch && $oRouteMatch->getParam('action') === \AssetsBundle\Mvc\Controller\AbstractActionController::JS_CUSTOM_ACTION
+            && ($oRouteMatch = $oRouter->match($oRequest)) instanceof \Laminas\Router\RouteMatch && $oRouteMatch->getParam('action') === \AssetsBundle\Mvc\Controller\AbstractActionController::JS_CUSTOM_ACTION
         ) {
-            if (!($oViewModel = $oEvent->getModel()) instanceof \Zend\View\Model\ViewModel) {
+            if (!($oViewModel = $oEvent->getModel()) instanceof \Laminas\View\Model\ViewModel) {
                 throw new \UnexpectedValueException(sprintf(
-                        'Event model expects an instance of "Zend\View\Model\ViewModel", "%s" given',
+                        'Event model expects an instance of "Laminas\View\Model\ViewModel", "%s" given',
                     is_object($oViewModel) ? get_class($oViewModel) : gettype($oViewModel)
                 ));
             } elseif (($oException = $oViewModel->getVariable('exception')) instanceof \Exception) {
@@ -121,10 +121,10 @@ class JsCustomStrategy implements \Zend\EventManager\ListenerAggregateInterface
     }
 
     /**
-     * @param \Zend\View\ViewEvent $oEvent
+     * @param \Laminas\View\ViewEvent $oEvent
      * @throws \UnexpectedValueException
      */
-    public function injectResponse(\Zend\View\ViewEvent $oEvent)
+    public function injectResponse(\Laminas\View\ViewEvent $oEvent)
     {
         if ($oEvent->getRenderer() !== $this->getRenderer()) {
             return;

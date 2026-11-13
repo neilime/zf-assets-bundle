@@ -1,0 +1,21 @@
+name: Continuous integration
+on:
+  push:
+    branches: [master]
+  pull_request:
+  merge_group:
+  workflow_dispatch:
+  workflow_call:
+permissions: {}
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.number || github.ref }}-checks
+  cancel-in-progress: true
+jobs:
+  checks:
+    uses: hoverkraft-tech/ci-github-php/.github/workflows/continuous-integration.yml@b81aa7b46f6b7a18ff1d9582c918cc1cc8296b98 # 2.0.0
+    permissions:
+      contents: read
+      id-token: write
+    with:
+      extensions: mbstring, dom, xml, xmlwriter, curl, zip, intl, gd
+      package: "true"
